@@ -3,7 +3,7 @@
 
 import os
 from flask_script import Manager, Server
-from june.app import create_app
+from usedcar.app import create_app
 
 
 settings = os.path.abspath('./etc/settings.py')
@@ -15,7 +15,7 @@ if 'JUNE_SETTINGS' not in os.environ and os.path.exists(settings):
 
 manager = Manager(create_app)
 manager.add_option('-c', '--config', dest='config', required=False)
-manager.add_command('runserver', Server())
+manager.add_command('runserver', Server(host='0.0.0.0'))
 
 '''
 @manager.command
