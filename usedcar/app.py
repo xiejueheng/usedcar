@@ -8,7 +8,7 @@ import hashlib
 from flask import request, g
 from flask_mail import Mail
 from ._flask import Flask
-from .models import db, cache, get_site_status
+#from .models import db, cache, get_site_status
 
 
 def create_app(config=None):
@@ -29,17 +29,17 @@ def create_app(config=None):
     app.static_folder = app.config.get('STATIC_FOLDER')
     app.config.update({'SITE_TIME': datetime.datetime.utcnow()})
 
-    register_hooks(app)
-    register_jinja(app)
-    register_database(app)
+    #register_hooks(app)
+    #register_jinja(app)
+    #register_database(app)
 
     Mail(app)
-    register_babel(app)
-    register_routes(app)
+    #register_babel(app)
+    #register_routes(app)
     register_logger(app)
     return app
 
-
+'''
 def register_database(app):
     """Database related configuration."""
     #: prepare for database
@@ -47,8 +47,9 @@ def register_database(app):
     db.app = app
     #: prepare for cache
     cache.init_app(app)
+'''
 
-
+'''
 def register_hooks(app):
     """Hooks for request."""
     from .utils.user import get_current_user
@@ -65,8 +66,8 @@ def register_hooks(app):
             delta = time.time() - g._before_request_time
             response.headers['X-Render-Time'] = delta * 1000
         return response
-
-
+'''
+'''
 def register_routes(app):
     from .handlers import front, account, node, topic, user, admin
     app.register_blueprint(account.bp, url_prefix='/account')
@@ -76,8 +77,8 @@ def register_routes(app):
     app.register_blueprint(admin.bp, url_prefix='/admin')
     app.register_blueprint(front.bp, url_prefix='')
     return app
-
-
+'''
+'''
 def register_jinja(app):
     from . import filters
     from .handlers.admin import load_sidebar
@@ -128,7 +129,7 @@ def register_babel(app):
     @babel.localeselector
     def get_locale():
         return request.accept_languages.best_match(supported, default)
-
+'''
 
 def register_logger(app):
     """Track the logger for production mode."""

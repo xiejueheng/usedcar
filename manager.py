@@ -3,7 +3,7 @@
 
 import os
 from flask_script import Manager, Server
-#from june.app import create_app
+from june.app import create_app
 
 
 settings = os.path.abspath('./etc/settings.py')
@@ -17,7 +17,7 @@ manager = Manager(create_app)
 manager.add_option('-c', '--config', dest='config', required=False)
 manager.add_command('runserver', Server())
 
-"""
+'''
 @manager.command
 def createdb():
     """Create database for june."""
@@ -33,7 +33,7 @@ def live(port=5000):
     server.watch('assets/page/*.js', 'make -C assets build')
     server.watch('assets/stylus', 'make -C assets stylus')
     server.serve(port)
-"""
+'''
 
 
 if __name__ == '__main__':
