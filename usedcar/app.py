@@ -35,7 +35,7 @@ def create_app(config=None):
 
     Mail(app)
     #register_babel(app)
-    #register_routes(app)
+    register_routes(app)
     register_logger(app)
     return app
 
