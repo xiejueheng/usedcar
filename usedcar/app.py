@@ -67,8 +67,11 @@ def register_hooks(app):
             response.headers['X-Render-Time'] = delta * 1000
         return response
 '''
-'''
+
 def register_routes(app):
+    from .controller import market
+    app.register_blueprint(market.bp, url_prefix='/market')
+    '''
     from .handlers import front, account, node, topic, user, admin
     app.register_blueprint(account.bp, url_prefix='/account')
     app.register_blueprint(node.bp, url_prefix='/node')
@@ -76,8 +79,9 @@ def register_routes(app):
     app.register_blueprint(user.bp, url_prefix='/user')
     app.register_blueprint(admin.bp, url_prefix='/admin')
     app.register_blueprint(front.bp, url_prefix='')
+    '''
     return app
-'''
+
 '''
 def register_jinja(app):
     from . import filters
