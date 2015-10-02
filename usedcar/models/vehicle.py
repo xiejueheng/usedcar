@@ -91,3 +91,5 @@ class VehiclePhoto(db.Model, SessionMixin):
 
 	def __repr__(self):
 		return '<VehiclePhoto: %s_%s>' % (self.id,self.vehicle_id)
+
+	
