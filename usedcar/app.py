@@ -33,7 +33,7 @@ def create_app(config=None):
     #register_jinja(app)
     register_database(app)
 
-    Mail(app)
+    #Mail(app)
     #register_babel(app)
     register_routes(app)
     register_logger(app)
@@ -68,8 +68,9 @@ def register_hooks(app):
 '''
 
 def register_routes(app):
-    from .controller import market
+    from .handlers import market,sales
     app.register_blueprint(market.bp, url_prefix='/market')
+    app.register_blueprint(sales.bp, url_prefix='/sales')
     '''
     from .handlers import front, account, node, topic, user, admin
     app.register_blueprint(account.bp, url_prefix='/account')
