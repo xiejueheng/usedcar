@@ -39,15 +39,14 @@ def create_app(config=None):
     register_logger(app)
     return app
 
-'''
 def register_database(app):
     """Database related configuration."""
     #: prepare for database
     db.init_app(app)
     db.app = app
     #: prepare for cache
-    cache.init_app(app)
-'''
+    #cache.init_app(app)
+
 
 '''
 def register_hooks(app):
