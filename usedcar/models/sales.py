@@ -6,7 +6,7 @@ from ._base import db, SessionMixin
 
 __all__ = ('SalesVehicle')
 
-class SalesVehicle(db.Mobel, SessionMixin):
+class SalesVehicle(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	brand_id = db.Column(db.Integer, default=0)
 	type_id = db.Column(db.Integer, default=0)

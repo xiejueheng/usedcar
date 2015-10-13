@@ -10,7 +10,7 @@ class Brand(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(40), unique=True, index=True,
 						 nullable=False)
-	first_letter = db.Column(db.String(1), unique=True, index=True,
+	first_letter = db.Column(db.String(2), unique=True, index=True,
 						 nullable=False)
 
 	def __init__(self, **kwargs):
