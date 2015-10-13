@@ -8,7 +8,7 @@ import hashlib
 from flask import request, g
 from flask_mail import Mail
 from ._flask import Flask
-#from .models import db, cache, get_site_status
+from .models import db
 
 
 def create_app(config=None):
@@ -31,7 +31,7 @@ def create_app(config=None):
 
     #register_hooks(app)
     #register_jinja(app)
-    #register_database(app)
+    register_database(app)
 
     Mail(app)
     #register_babel(app)
