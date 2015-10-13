@@ -17,14 +17,14 @@ manager = Manager(create_app)
 manager.add_option('-c', '--config', dest='config', required=False)
 manager.add_command('runserver', Server(host='0.0.0.0'))
 
-'''
+
 @manager.command
 def createdb():
     """Create database for june."""
-    from june.models import db
+    from usedcar.models import db
     db.create_all()
 
-
+'''
 @manager.command
 def live(port=5000):
     from livereload import Server

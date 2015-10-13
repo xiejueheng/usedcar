@@ -1,9 +1,10 @@
 # coding: utf-8
 
 import hashlib
-from ._base import db
 from datetime import datetime
 from ._base import db, SessionMixin
+
+__all__ = ('SalesVehicle')
 
 class SalesVehicle(db.Mobel, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
