@@ -21,30 +21,30 @@ RESERVED_WORDS = [
 
 class AddForm(BaseForm):
 	brandId = TextField(
-        _('brandId'), validators=[DataRequired()]
-    )
+		_('brandId'), validators=[DataRequired()]
+	)
 
-    typeId = TextField(
-        _('typeId'), validators=[DataRequired()]
-    )
+	typeId = TextField(
+		_('typeId'), validators=[DataRequired()]
+	)
 
-    styleId = TextField(
-        _('styleId'), validators=[DataRequired()]
-    )
+	styleId = TextField(
+		_('styleId'), validators=[DataRequired()]
+	)
 
-    name = TextField(
-        _('name'), validators=[DataRequired()]
-    )
+	name = TextField(
+		_('name'), validators=[DataRequired()]
+	)
 
-    mobile = TextField(
-        _('mobile'), validators=[DataRequired()]
-    )
+	mobile = TextField(
+		_('mobile'), validators=[DataRequired()]
+	)
 
-    location = TextField(
-        _('location'), validators=[DataRequired()]
-    )
+	location = TextField(
+		_('location'), validators=[DataRequired()]
+	)
 
-    def save(self):
-    	salesVehicle = SalesVehicle(**self.data)
-    	salesVehicle.save()
-    	return salesVehicle
+	def save(self):
+		salesVehicle = SalesVehicle(**self.data)
+		salesVehicle.save()
+		return salesVehicle
