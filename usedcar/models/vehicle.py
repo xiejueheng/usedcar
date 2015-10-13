@@ -4,7 +4,7 @@ import hashlib
 from datetime import datetime
 from ._base import db, SessionMixin
 
-__all__ = ('VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehicleImg')
+__all__ = ('VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto')
 
 """
 车型VehicleType

@@ -41,7 +41,7 @@ class SalesVehicle(db.Mobel, SessionMixin):
 			self.location = location
 
 		for k, v in kwargs.items():
-            setattr(self, k, v)
+			setattr(self, k, v)
 
 	def __str__(self):
 		return self.id
@@ -52,4 +52,4 @@ class SalesVehicle(db.Mobel, SessionMixin):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
-        return self
+		return self
