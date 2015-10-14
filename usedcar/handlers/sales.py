@@ -18,5 +18,7 @@ def add():
 	form = AddForm()
 	if form.validate_on_submit():
 		salesVehicle = form.save()
+		print salesVehicle
+		return "haha"
 
 	return abort(403)
