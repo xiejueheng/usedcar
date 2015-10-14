@@ -2,7 +2,7 @@
 
 from flask import Blueprint
 from flask import g, request, flash, current_app
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, abort, jsonify
 from flask.ext.babel import gettext as _
 from ..forms import AddForm
 
@@ -18,3 +18,5 @@ def add():
 	form = AddForm()
 	if form.validate_on_submit():
 		salesVehicle = form.save()
+
+	return abort(403)
