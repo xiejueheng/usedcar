@@ -4,7 +4,7 @@ import hashlib
 from datetime import datetime
 from ._base import db, SessionMixin
 
-__all__ = ('Brand')
+__all__ = ['Brand']
 
 class Brand(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
