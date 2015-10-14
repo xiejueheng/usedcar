@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from flask import current_app
-from wtforms import TextField, PasswordField, BooleanField
+from wtforms import TextField, PasswordField, BooleanField, StringField
 from wtforms import TextAreaField
 from wtforms.fields.html5 import EmailField, URLField
 from wtforms.validators import DataRequired, Email, Length, Regexp
@@ -20,32 +20,32 @@ RESERVED_WORDS = [
 ]
 
 class AddForm(BaseForm):
-	brandId = TextField(
+	brandId = StringField(
 		_('brandId'), validators=[DataRequired()],
 		description=_('brandId required')
 	)
 
-	typeId = TextField(
+	typeId = StringField(
 		_('typeId'), validators=[DataRequired()],
 		description=_('typeId required')
 	)
 
-	styleId = TextField(
+	styleId = StringField(
 		_('styleId'), validators=[DataRequired()],
 		description=_('styleId required')
 	)
 
-	name = TextField(
+	name = StringField(
 		_('name'), validators=[DataRequired()],
 		description=_('name required')
 	)
 
-	mobile = TextField(
+	mobile = StringField(
 		_('mobile'), validators=[DataRequired()],
 		description=_('mobile required')
 	)
 
-	location = TextField(
+	location = StringField(
 		_('location'), validators=[DataRequired()],
 		description=_('location required')
 	)
