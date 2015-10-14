@@ -19,7 +19,7 @@ class Brand(db.Model, SessionMixin):
 			self.first_letter = kwargs.pop('first_letter')
 
 	def __str__(self):
-		return self.name
+		return self.id
 
 	def __repr__(self):
-		return '<Brand: %s>' % self.name
+		return '<Brand: %s>' % self.id
