@@ -26,7 +26,7 @@ class SalesVehicle(db.Model, SessionMixin):
 
 		if 'styleId' in kwargs:
 			styleId = kwargs.pop('styleId')
-			self.style_id = style_id
+			self.style_id = styleId
 
 		if 'name' in kwargs:
 			name = kwargs.pop('name')

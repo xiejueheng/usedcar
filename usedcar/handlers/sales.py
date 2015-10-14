@@ -25,6 +25,6 @@ def add():
 		return "haha"
 	"""
 	params = requtils.get_params_dict(request)
-	salesVehicle = SalesVehicle(**self.data)
+	salesVehicle = SalesVehicle(**params)
 	return "haha"
 	#return abort(403)
