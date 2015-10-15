@@ -34,6 +34,6 @@ def add():
 @bp.route('/test', methods=['GET','POST'])
 def test():
 	print SalesVehicle.query.all()
-	print SalesVehicle.query.order_by(SalesVehicle.id)
+	print SalesVehicle.query.order_by(SalesVehicle.id).all()
 	print SalesVehicle.query.first()
 	return ""
