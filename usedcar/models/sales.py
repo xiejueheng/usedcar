@@ -44,7 +44,7 @@ class SalesVehicle(db.Model, SessionMixin):
 			setattr(self, k, v)
 
 	def __str__(self):
-		return 'SalesVehicle %s' %self.id
+		return 'SalesVehicle id=%s, brand_id=%s, type_id=%s, style_id=%s, name=%s, location=%s, mobile=%s' %(self.id,self.brand_id,self.type_id,self.style_id,self.name,self.location,self.mobile)
 
 	def __repr__(self):
 		return '<SalesVehicle: %d>' % self.id
