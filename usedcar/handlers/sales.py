@@ -26,5 +26,14 @@ def add():
 	"""
 	params = requtils.get_params_dict(request)
 	salesVehicle = SalesVehicle(**params)
+	sv = salesVehicle.save()
+	print sv
 	return "haha"
 	#return abort(403)
+
+@bp.route('/test', methods=['GET','POST'])
+def test():
+	print SalesVehicle.query.all()
+	print SalesVehicle.query.order_by(SalesVehicle.id)
+	print SalesVehicle.query.first()
+	return ""

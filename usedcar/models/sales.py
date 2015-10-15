@@ -44,10 +44,10 @@ class SalesVehicle(db.Model, SessionMixin):
 			setattr(self, k, v)
 
 	def __str__(self):
-		return self.id
+		return 'SalesVehicle %s' %self.id
 
 	def __repr__(self):
-		return '<SalesVehicle: %s>' % self.id
+		return '<SalesVehicle: %d>' % self.id
 
 	def save(self):
 		db.session.add(self)
