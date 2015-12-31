@@ -14,6 +14,8 @@ class VehicleType(db.Model, SessionMixin):
 	name = db.Column(db.String(40), unique=True, index=True,
 						 nullable=False)
 	brand_id = db.Column(db.Integer, default=0)
+	displacements = db.Column(db.String(40), unique=True, index=True,
+						 nullable=False)
 	price_range = db.Column(db.String(40), unique=True, index=True,
 						 nullable=False)
 
@@ -41,7 +43,8 @@ class VehicleStyle(db.Model, SessionMixin):
 	name = db.Column(db.String(40), unique=True, index=True,
 						 nullable=False)
 	type_id = db.Column(db.Integer, default=0)
-	displacement = db.Column(db.Integer, default=0)
+	displacement = db.Column(db.String(40), unique=True, index=True,
+						 nullable=False)
 	transmission = db.Column(db.Integer, default=0)
 	type_info = db.Column(db.Integer, default=0)
 	seat = db.Column(db.Integer, default=0)
