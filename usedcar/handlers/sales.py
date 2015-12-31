@@ -27,8 +27,9 @@ def add():
 	params = requtils.get_params_dict(request)
 	salesVehicle = SalesVehicle(**params)
 	sv = salesVehicle.save()
+	js = {'code':0}
 	print sv
-	return "haha"
+	return jsonify(**js)
 	#return abort(403)
 
 @bp.route('/test', methods=['GET','POST'])

@@ -6,9 +6,15 @@ from ._base import db, SessionMixin
 
 __all__ = ['Brand']
 
+"""品牌信息model"""
 class Brand(db.Model, SessionMixin):
+	"""id"""
 	id = db.Column(db.Integer, primary_key=True)
+
+	"""品牌名称"""
 	name = db.Column(db.String(40), nullable=False)
+
+	"""首字母"""
 	first_letter = db.Column(db.String(2), nullable=False)
 
 	def __init__(self, **kwargs):

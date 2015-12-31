@@ -7,7 +7,7 @@ from ._base import db, SessionMixin
 __all__ = ['SalesVehicle']
 
 """
-卖车信息
+卖车信息model
 """
 class SalesVehicle(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
@@ -18,27 +18,58 @@ class SalesVehicle(db.Model, SessionMixin):
 	"""车型id"""
 	type_id = db.Column(db.Integer, default=0)
 
-	#车款id
+	""" 车款 """
 	style_id = db.Column(db.Integer, default=0)
+	
+	""" 卖家姓名 """
 	name = db.Column(db.String(100), nullable=False)
+
+	""" 车辆所在地 """
 	location = db.Column(db.String(100), nullable=False)
+
+	""" 手机号码 """
 	mobile = db.Column(db.String(11), nullable=False)
 
+	""" 上牌时间 """
 	licesing_year = db.Column(db.Integer, default=0)
+
+	"""里程"""
 	mileage =  db.Column(db.Integer, default=0)
+
+	"""裸车价格"""
 	price = db.Column(db.String(11), nullable=False)
+
+	"""车辆状况 1:很好,2:较好,3:一般,4:较差,5:差	"""
 	status = db.Column(db.Integer, default=0)
+
+	"""使用频率"""
 	use_frequency = db.Column(db.Integer, default=0)
+
+	"""生产情况 1:畅销,2:一般,3:滞销,4:停产"""
 	production_status = db.Column(db.Integer, default=0)
+
+	"""上牌地点"""
 	licesing_place = db.Column(db.String(11), nullable=False)
+
+	"""期待多久卖掉"""
 	sales_time = db.Column(db.String(11), nullable=False)
+
+	"""0：鉴定评估,1：快速估价"""
 	type = db.Column(db.Integer, default=0)
 
+	"""置换品牌ID"""
 	replace_brand_id = db.Column(db.Integer, default=0)
+
+	"""置换车系ID"""
 	replace_type_id = db.Column(db.Integer, default=0)
+
+	"""置换车款ID"""
 	replace_style_id = db.Column(db.Integer, default=0)
+
+	"""经销商ID"""
 	agency_id = db.Column(db.Integer, default=0)
 
+	"""数据类型, 1:我要卖车,2:鉴定评估,3:出手车辆(不需要预约),4:出售车辆(置换卖),5:出售车辆(经销商代理)"""
 	sales_type = db.Column(db.Integer, default=0)
 
 	def __init__(self, **kwargs):
