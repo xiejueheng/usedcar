@@ -15,7 +15,7 @@ class Brand(db.Model, SessionMixin):
 	name = db.Column(db.String(40), nullable=False)
 
 	"""首字母"""
-	first_letter = db.Column(db.String(2), nullable=False)
+	first_letter = db.Column(db.String(2), nullable=False, default='')
 
 	def __init__(self, **kwargs):
 		if 'name' in kwargs:
@@ -25,7 +25,7 @@ class Brand(db.Model, SessionMixin):
 			self.first_letter = kwargs.pop('first_letter')
 
 	def __str__(self):
-		return self.id
+		return '<Brand: %s %s %s>' %(self.id,self.name,self.first_letter)
 
 	def __repr__(self):
-		return '<Brand: %s>' % self.id
+		return '<Brand: %s %s %s>' %(self.id,unicode(self.name),self.first_letter)

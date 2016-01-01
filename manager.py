@@ -5,6 +5,10 @@ import os
 from flask_script import Manager, Server
 from usedcar.app import create_app
 
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
+
 
 settings = os.path.abspath('./etc/settings.py')
 if not os.path.exists(settings):
