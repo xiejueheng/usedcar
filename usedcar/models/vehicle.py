@@ -13,7 +13,7 @@ class VehicleType(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
 
 	"""车型名称"""
-	name = db.Column(db.String(40), unique=True, index=True, nullable=False)
+	name = db.Column(db.String(40), index=True, nullable=False)
 	
 	"""品牌id"""
 	brand_id = db.Column(db.Integer, default=0)
@@ -25,11 +25,11 @@ class VehicleType(db.Model, SessionMixin):
 	transmissions = db.Column(db.String(40), nullable=False)
 
 	"""价格区间"""
-	price_range = db.Column(db.String(40), unique=True, index=True,nullable=False)
+	price_range = db.Column(db.String(40),nullable=False)
 
 	def __init__(self, **kwargs):
 		if 'name' in kwargs:
-			self.name = kwargs.pop('kwargs')
+			self.name = kwargs.pop('name')
 
 		if 'brand_id' in kwargs:
 			self.brand_id = kwargs.pop('brand_id')
