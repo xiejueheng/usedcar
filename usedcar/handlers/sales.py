@@ -77,14 +77,112 @@ def load():
 		for line in list_of_all_lines:
 			line = line.strip('\r\n')
 			t_dict = get_type_dict(line)
-			#print t_dict, brand_map[t_dict.get('brand_name')]
 			t_dict['brand_id'] = brand_map.get(t_dict.get('brand_name',0),0)
-			print t_dict
 			t = VehicleType(**t_dict).save()
+			#print t_dict
 			type_map[t.name] = t.id
 	finally:
 		file_obj.close()
 
+	"""
+	读取车款detail.txt
+	"""
+	detail_file_path = os.path.join(run_path,'data/detail.txt')
+	file_obj = open(detail_file_path,'r')
+	
+	try:
+		list_of_all_lines = file_obj.readlines()
+		for line in list_of_all_lines:
+			line = line.strip('\r\n')
+			d_dict = get_detail_dict(line)
+			d_dict['typeId'] = type_map.get(d_dict.get('type_name',''),0)
+			print d_dict
+	finally:
+		file_obj.close()
+
+def get_detail_dict(line):
+	detail_line_arrays = line.split(',')
+	brand_name = to_unicode(detail_line_arrays[0])
+	type_name = to_unicode(detail_line_arrays[1])
+	style_name = to_unicode(detail_line_arrays[2])
+	produce_year = detail_line_arrays[3]
+
+	if not str(produce_year)  == '':
+		produce_year = int(produce_year)	
+
+	displacement = detail_line_arrays[4]
+	transmission = get_transmission(detail_line_arrays[5])
+
+	seat = detail_line_arrays[6]
+	if not str(seat) == '':
+		seat = int(seat)
+	else:
+		seat = 5
+
+	body_model = get_body_model(detail_line_arrays[7])
+	gear = detail_line_arrays[8]
+	
+	if gear == 'CV':
+		gear = 0
+	elif not str(gear) == '':
+		gear = int(gear[0])
+	else:
+		gear = 0
+
+	gate = detail_line_arrays[9]
+	if not str(gate) == '':
+		gate = int(gate)
+	else:
+		gate = 4
+
+	d_dict = {}
+	d_dict['type_name'] = type_name
+	d_dict['style_name'] = style_name
+	d_dict['produce_year'] = produce_year
+	d_dict['displacement'] = displacement
+	d_dict['transmission'] = transmission
+	d_dict['seat'] = seat
+	d_dict['body_model'] = body_model
+	d_dict['gear'] = gear
+	d_dict['gate'] = gate
+
+	return d_dict
+	
+def get_body_model(text):
+	if u'两厢车' == text:
+		return 1
+	elif u'三厢车' == text:
+		return 2
+	elif u'SUV' == text:
+		return 3
+	elif u'MPV' == text:
+		return 4
+	elif u'皮卡' == text:
+		return 5
+	else:
+		print 'body_model=%s' %text
+		return 0
+
+def get_transmission(text):
+	if u'手动' == text:
+		return 1
+	elif u'自动' == text:
+		return 2
+	elif u'手自一体' == text:
+		return 3
+	elif u'双离合' == text:
+		return 4
+	elif text.find(u'E-CVT无级变速') > -1:
+		return 5
+	elif text.find(u'T无级变速') > -1:
+		return 6
+	else:
+		print 'transmission = %s' %text
+		return 0
+
+"""
+提取车型内容
+"""
 def get_type_dict(line):
 	type_line_arrays = line.split(',')
 	brand_name = to_unicode(type_line_arrays[0])

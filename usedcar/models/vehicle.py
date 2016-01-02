@@ -64,7 +64,7 @@ class VehicleStyle(db.Model, SessionMixin):
 	"""排量"""
 	displacement = db.Column(db.String(40), nullable=False)
 
-	"""变速箱"""
+	"""变速箱, 1:手动,2:自动,3:手自一体,4:双离合,5:E-CVT无级变速,6:T无级变速"""
 	transmission = db.Column(db.Integer, default=0)
 
 	"""车辆类型"""
@@ -84,6 +84,40 @@ class VehicleStyle(db.Model, SessionMixin):
 
 	"""款式年份"""
 	produce_year = db.Column(db.Integer, default=0)
+
+	"""价格"""
+	price = db.Column(db.String(40), nullable=False, default=0)
+
+	def __init__(self, **kwargs):
+		if 'name' in kwargs:
+			self.name = kwargs.pop('name')
+		
+		if 'typeId' in kwargs:
+			self.type_id =  kwargs.pop('typeId')
+
+		if 'displacement' in kwargs:
+			self.displacement = kwargs.pop('displacement')
+
+		if 'transmission' in kwargs:
+			self.transmission = kwargs.pop('transmission')
+
+		if 'typeInfo' in kwargs:
+			self.type_info = kwargs.pop('typeInfo')
+
+		if 'seat' in kwargs:
+			self.seat = kwargs.pop('seat')
+
+		if 'bodyModel' in kwargs:
+			self.body_model = kwargs.pop('bodyModel')
+
+		if 'gear' in kwargs:
+			self.gear = kwargs.pop('gear')
+
+		if 'gate' in kwargs:
+			self.gate = kwargs.pop('gate')
+
+		if 'produceYear' in kwargs:
+			self.produce_year = kwargs.pop('produceYear')
 
 	def __str__(self):
 		return self.name

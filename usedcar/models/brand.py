@@ -24,6 +24,13 @@ class Brand(db.Model, SessionMixin):
 		if 'first_letter' in kwargs:
 			self.first_letter = kwargs.pop('first_letter')
 
+	def json(self):
+		b_dict = {}
+		b_dict['id']=self.id
+		b_dict['name']=self.name
+		b_dict['first_letter']=self.first_letter
+		return b_dict
+
 	def __str__(self):
 		return '<Brand: %s %s %s>' %(self.id,self.name,self.first_letter)
 
