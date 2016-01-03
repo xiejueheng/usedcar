@@ -8,7 +8,7 @@ from flask import render_template, redirect, abort, jsonify
 from flask.ext.babel import gettext as _
 from ..forms import AddForm
 from ..utils import requtils
-from ..models import SalesVehicle,Brand,VehicleType
+from ..models import SalesVehicle,Brand,VehicleType,VehicleStyle
 
 __all__ = ['bp']
 
@@ -97,6 +97,7 @@ def load():
 			d_dict = get_detail_dict(line)
 			d_dict['typeId'] = type_map.get(d_dict.get('type_name',''),0)
 			print d_dict
+			VehicleStyle(**d_dict).save()
 	finally:
 		file_obj.close()
 
@@ -137,7 +138,7 @@ def get_detail_dict(line):
 
 	d_dict = {}
 	d_dict['type_name'] = type_name
-	d_dict['style_name'] = style_name
+	d_dict['name'] = style_name
 	d_dict['produce_year'] = produce_year
 	d_dict['displacement'] = displacement
 	d_dict['transmission'] = transmission

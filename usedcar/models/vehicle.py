@@ -49,6 +49,16 @@ class VehicleType(db.Model, SessionMixin):
 	def __repr__(self):
 		return '<VehicleType: %s>' % self.name
 
+	def json(self):
+		t_dict = {}
+		t_dict['id'] = self.id
+		t_dict['name'] = self.name
+		t_dict['brandId'] = self.brand_id
+		t_dict['priceRange'] = self.price_range
+		t_dict['displacements'] = self.displacements
+		t_dict['transmissions'] = self.transmissions
+		return t_dict
+
 """
 车款VehicleStyle model
 """
@@ -124,6 +134,21 @@ class VehicleStyle(db.Model, SessionMixin):
 
 	def __repr__(self):
 		return '<VehicleStyle: %s>' % self.name
+
+	def json(self):
+		s_dict = {}
+		s_dict['id'] = self.id
+		s_dict['typeId'] = self.type_id
+		s_dict['displacement'] = self.displacement
+		s_dict['transmission'] = self.transmission
+		s_dict['typeInfo'] = self.typeInfo
+		s_dict['seat'] = self.seat
+		s_dict['bodyModel'] = self.body_model
+		s_dict['gear'] = self.gear
+		s_dict['gate'] = self.gate
+		s_dict['produceYear'] = self.produce_year
+
+		return s_dict
 
 """
 车辆信息VehicleInfo model
