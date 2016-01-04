@@ -66,7 +66,7 @@ class VehicleStyle(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	
 	"""车款名称"""
-	name = db.Column(db.String(40), unique=True, index=True, nullable=False)
+	name = db.Column(db.String(40), index=True, nullable=False)
 
 	"""车型id"""
 	type_id = db.Column(db.Integer, default=0)
@@ -141,7 +141,7 @@ class VehicleStyle(db.Model, SessionMixin):
 		s_dict['typeId'] = self.type_id
 		s_dict['displacement'] = self.displacement
 		s_dict['transmission'] = self.transmission
-		s_dict['typeInfo'] = self.typeInfo
+		s_dict['typeInfo'] = self.type_info
 		s_dict['seat'] = self.seat
 		s_dict['bodyModel'] = self.body_model
 		s_dict['gear'] = self.gear
