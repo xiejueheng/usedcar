@@ -111,7 +111,7 @@ def get_detail_dict(line):
 	if not str(produce_year)  == '':
 		produce_year = int(produce_year)	
 
-	displacement = detail_line_arrays[4]
+	displacement = to_unicode(detail_line_arrays[4])
 	transmission = get_transmission(detail_line_arrays[5])
 
 	seat = detail_line_arrays[6]
