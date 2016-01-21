@@ -24,7 +24,7 @@ def getbrandlist():
 	brand_json_list = []
 	for brand in brand_list:
 		brand_json_list.append(brand.json())
-	return json.dumps({'code':0, 'list':brand_json_list})
+	return '%s(%s)' %('window.market.getbrandlist',json.dumps({'code':0, 'list':brand_json_list}))
 
 """
 3.2.	查询车系列表
@@ -39,7 +39,7 @@ def getvehicletype():
 	type_json_list = []
 	for t in type_list:
 		type_json_list.append(t.json())
-	return json.dumps({'code':0, 'list':type_json_list})
+	return '%s(%s)' %('window.market.getvehicletype',json.dumps({'code':0, 'list':type_json_list}))
 
 """
 3.3.	查询车款列表
@@ -55,7 +55,7 @@ def getvehiclestyle():
 	style_json_list = []
 	for s in style_list:
 		style_json_list.append(s.json())
-	return json.dumps({'code':0,'list':style_json_list})
+	return '%s(%s)' %('window.market.getvehiclestyle',json.dumps({'code':0,'list':style_json_list}))
 
 @bp.route('/getlist', methods=['GET', 'POST'])
 def getlist():

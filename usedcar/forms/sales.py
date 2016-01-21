@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from flask import current_app
-from wtforms import TextField, PasswordField, BooleanField, StringField
+from wtforms import TextField, PasswordField, BooleanField, StringField, IntegerField
 from wtforms import TextAreaField
 from wtforms.fields.html5 import EmailField, URLField
 from wtforms.validators import DataRequired, Email, Length, Regexp
@@ -19,24 +19,26 @@ RESERVED_WORDS = [
 	
 ]
 
+
+#我要卖车
 class AddForm(BaseForm):
-	brandId = StringField(
-		_('brandId'), validators=[DataRequired()],
+	brandId = IntegerField(
+		'brandId', validators=[DataRequired()],
 		description=_('brandId required')
 	)
 
-	typeId = StringField(
-		_('typeId'), validators=[DataRequired()],
+	typeId = IntegerField(
+		'typeId', validators=[DataRequired()],
 		description=_('typeId required')
 	)
 
-	styleId = StringField(
-		_('styleId'), validators=[DataRequired()],
+	styleId = IntegerField(
+		'styleId', validators=[DataRequired()],
 		description=_('styleId required')
 	)
 
 	name = StringField(
-		_('name'), validators=[DataRequired()],
+		'name', validators=[DataRequired()],
 		description=_('name required')
 	)
 
@@ -46,11 +48,17 @@ class AddForm(BaseForm):
 	)
 
 	location = StringField(
-		_('location'), validators=[DataRequired()],
+		'location', validators=[DataRequired()],
 		description=_('location required')
+	)
+	salesType = IntegerField(
+		'salesType', validators=[DataRequired()],
+		description=('salesType required')
 	)
 
 	def save(self):
+		print self.data
+		return
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.save()
 		return salesVehicle

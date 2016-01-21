@@ -5,6 +5,7 @@ import os.path
 from flask import Blueprint
 from flask import g, request, flash, current_app
 from flask import render_template, redirect, abort, jsonify
+from flask import json
 from flask.ext.babel import gettext as _
 from ..forms import AddForm
 from ..utils import requtils
@@ -20,20 +21,26 @@ run_path = os.getcwd()
 """
 @bp.route('/add', methods=['GET','POST'])
 def add():
-	"""
-	form = AddForm()
-	if form.validate_on_submit():
+	
+	form = AddForm(request.args)
+	if form.validate():
+	#print form.errors
 		salesVehicle = form.save()
 		print salesVehicle
-		return "haha"
+		js = {'code':0}
+		return '%s(%s)' %('window.usedcar.add',json.dumps(js))
+	else:
+		return '%s(%s)' %('window.usedcar.add',json.dumps(form.errors))
+
 	"""
 	params = requtils.get_params_dict(request)
 	salesVehicle = SalesVehicle(**params)
 	sv = salesVehicle.save()
 	js = {'code':0}
 	print sv
-	return jsonify(**js)
+	return '%s(%s)' %('window.usedcar.add',json.dumps(js))
 	#return abort(403)
+	"""
 
 @bp.route('/test', methods=['GET','POST'])
 def test():

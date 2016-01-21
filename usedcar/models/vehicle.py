@@ -126,8 +126,8 @@ class VehicleStyle(db.Model, SessionMixin):
 		if 'gate' in kwargs:
 			self.gate = kwargs.pop('gate')
 
-		if 'produceYear' in kwargs:
-			self.produce_year = kwargs.pop('produceYear')
+		if 'produce_year' in kwargs:
+			self.produce_year = kwargs.pop('produce_year')
 
 	def __str__(self):
 		return self.name
