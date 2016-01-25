@@ -30,7 +30,8 @@ def add():
 		js = {'code':0}
 		return '%s(%s)' %('window.usedcar.add',json.dumps(js))
 	else:
-		return '%s(%s)' %('window.usedcar.add',json.dumps(form.errors))
+		js = {'code':508, 'data':form.errors}
+		return '%s(%s)' %('window.usedcar.add',json.dumps(js))
 
 	"""
 	params = requtils.get_params_dict(request)

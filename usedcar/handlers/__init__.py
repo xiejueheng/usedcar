@@ -3,3 +3,4 @@
 
 from .market import *
 from .sales import *
+from .region import *
