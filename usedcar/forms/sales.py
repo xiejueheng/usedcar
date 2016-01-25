@@ -47,10 +47,16 @@ class AddForm(BaseForm):
 		description=_('mobile required')
 	)
 
-	location = StringField(
-		'location', validators=[DataRequired()],
-		description=_('location required')
+	city = IntegerField(
+		'city', validators=[DataRequired()],
+		description=_('city required')
 	)
+
+	country = IntegerField(
+		'country', validators=[DataRequired()],
+		description=_('country required')
+	)
+
 	salesType = IntegerField(
 		'salesType', validators=[DataRequired()],
 		description=('salesType required')

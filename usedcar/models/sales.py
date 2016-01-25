@@ -24,8 +24,11 @@ class SalesVehicle(db.Model, SessionMixin):
 	""" 卖家姓名 """
 	name = db.Column(db.String(100), nullable=False)
 
-	""" 车辆所在地 """
-	location = db.Column(db.String(100), nullable=False)
+	""" 车辆所在城市 """
+	city = db.Column(db.Integer, default=0)
+
+	""" 车辆所在区县 """
+	country = db.Column(db.Integer, default=0)
 
 	""" 手机号码 """
 	mobile = db.Column(db.String(11), nullable=False)
@@ -93,9 +96,13 @@ class SalesVehicle(db.Model, SessionMixin):
 			mobile = kwargs.pop('mobile')
 			self.mobile = mobile
 
-		if 'location' in kwargs:
-			location = kwargs.pop('location')
-			self.location = location
+		if 'city' in kwargs:
+			city = kwargs.pop('city')
+			self.city = city
+
+		if 'country' in kwargs:
+			country	= kwargs.pop('country')
+			self.country = country
 
 		if 'licesingYear' in kwargs:
 			licesing_year = kwargs.pop('licesing_year')
