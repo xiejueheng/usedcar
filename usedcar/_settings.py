@@ -5,6 +5,8 @@ TESTING = False
 VERIFY_EMAIL = True
 VERIFY_USER = True
 
+WTF_CSRF_ENABLED = False
+
 ROOT_FOLDER = os.path.dirname(os.path.abspath(__file__))
 if os.path.exists('public/static'):
     STATIC_FOLDER = os.path.join(os.getcwd(), 'public', 'static')
