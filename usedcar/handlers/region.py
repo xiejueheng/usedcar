@@ -32,7 +32,7 @@ def country():
 	if not cityId:
 		return abort(404)
 
-	country_list = list(Country.query.filter_by(city_id=cityId))
+	country_list = list(Country.query.filter_by(cityId=cityId))
 	country_json_list = []
 	for c in country_list:
 		country_json_list.append(c.json())
@@ -52,6 +52,8 @@ def load():
 
 	for country in country_list:
 		country.save()
+	
+	return 'OK'
 
 def get_data():
 	city_file_path = os.path.join(run_path,'data/city.txt')

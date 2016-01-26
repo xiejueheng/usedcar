@@ -22,7 +22,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	style_id = db.Column(db.Integer, default=0)
 	
 	""" 卖家姓名 """
-	name = db.Column(db.String(100), nullable=False)
+	name = db.Column(db.String(100), nullable=True)
 
 	""" 车辆所在城市 """
 	city = db.Column(db.Integer, default=0)
@@ -31,7 +31,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	country = db.Column(db.Integer, default=0)
 
 	""" 手机号码 """
-	mobile = db.Column(db.String(11), nullable=False)
+	mobile = db.Column(db.String(11), nullable=True)
 
 	""" 上牌时间 """
 	licesing_year = db.Column(db.Integer, default=0)
@@ -40,7 +40,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	mileage =  db.Column(db.Integer, default=0)
 
 	"""裸车价格"""
-	price = db.Column(db.String(11), nullable=False)
+	price = db.Column(db.String(11), nullable=True)
 
 	"""车辆状况 1:很好,2:较好,3:一般,4:较差,5:差	"""
 	status = db.Column(db.Integer, default=0)
@@ -52,10 +52,10 @@ class SalesVehicle(db.Model, SessionMixin):
 	production_status = db.Column(db.Integer, default=0)
 
 	"""上牌地点"""
-	licesing_place = db.Column(db.String(11), nullable=False)
+	licesing_place = db.Column(db.String(11), nullable=True)
 
 	"""期待多久卖掉"""
-	sales_time = db.Column(db.String(11), nullable=False)
+	sales_time = db.Column(db.String(11), nullable=True)
 
 	"""0：鉴定评估,1：快速估价"""
 	type = db.Column(db.Integer, default=0)
@@ -164,7 +164,7 @@ class SalesVehicle(db.Model, SessionMixin):
 			setattr(self, k, v)
 
 	def __str__(self):
-		return 'SalesVehicle id=%s, brand_id=%s, type_id=%s, style_id=%s, name=%s, location=%s, mobile=%s' %(self.id,self.brand_id,self.type_id,self.style_id,self.name,self.location,self.mobile)
+		return 'SalesVehicle sales_type=%s, id=%s, brand_id=%s, type_id=%s, style_id=%s, name=%s, city=%s, country=%s, mobile=%s' %(self.sales_type,self.id,self.brand_id,self.type_id,self.style_id,self.name,self.city,self.country,self.mobile)
 
 	def __repr__(self):
 		return '<SalesVehicle: %d>' % self.id

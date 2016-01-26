@@ -108,6 +108,8 @@ def load():
 			VehicleStyle(**d_dict).save()
 	finally:
 		file_obj.close()
+	
+	return 'OK'
 
 def get_detail_dict(line):
 	detail_line_arrays = line.split(',')

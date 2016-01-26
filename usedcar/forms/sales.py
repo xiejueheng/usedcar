@@ -57,14 +57,8 @@ class AddForm(BaseForm):
 		description=_('country required')
 	)
 
-	salesType = IntegerField(
-		'salesType', validators=[DataRequired()],
-		description=('salesType required')
-	)
-
 	def save(self):
-		print self.data
-		return
 		salesVehicle = SalesVehicle(**self.data)
+		salesVehicle.sales_type = 1
 		salesVehicle.save()
 		return salesVehicle
