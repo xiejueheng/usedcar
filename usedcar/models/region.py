@@ -30,7 +30,7 @@ class City(db.Model, SessionMixin):
 		t_dict['name'] = self.name
 		return t_dict
 
-class country(db.Model, SessionMixin):
+class Country(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
 
 	name = db.Column(db.String(40), nullable=False)

@@ -10,7 +10,7 @@ from flask.ext.babel import gettext as _
 from flask import jsonify
 from flask import json
 from sales import to_unicode
-from ..models import City,country
+from ..models import City,Country
 from ..helpers import force_int
 
 __all__ = ['bp']
@@ -32,7 +32,7 @@ def country():
 	if not cityId:
 		return abort(404)
 
-	country_list = list(country.query.filter_by(city_id=cityId))
+	country_list = list(Country.query.filter_by(city_id=cityId))
 	country_json_list = []
 	for c in country_list:
 		country_json_list.append(c.json())
@@ -87,7 +87,7 @@ def get_data():
 			b_dict['cityId'] = int(line_arrays[0])
 			b_dict['id'] = int(line_arrays[1])
 			b_dict['name'] = to_unicode(line_arrays[2])
-			country_list.append(country(**b_dict))
+			country_list.append(Country(**b_dict))
 	finally:
 		file_obj.close()
 
