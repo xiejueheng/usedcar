@@ -1,5 +1,8 @@
 # coding: utf-8
 
+import os
+import os.path
+
 from flask import Blueprint
 from flask import g, request, flash, current_app
 from flask import render_template, redirect, url_for, abort
