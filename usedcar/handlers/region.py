@@ -62,8 +62,8 @@ def get_data():
 	try:
 		list_of_all_lines = file_obj.readlines()
 		for line in list_of_all_lines:
-			print line
 			line = line.strip('\r\n')
+			print line
 			line_arrays = line.split(',')
 			b_dict = {}
 			b_dict['id'] = int(line_arrays[0])
@@ -80,14 +80,14 @@ def get_data():
 	try:
 		list_of_all_lines = file_obj.readlines()
 		for line in list_of_all_lines:
-			print line
 			line = line.strip('\r\n')
+			print line
 			line_arrays = line.split(',')
 			b_dict = {}
 			b_dict['cityId'] = int(line_arrays[0])
 			b_dict['id'] = int(line_arrays[1])
 			b_dict['name'] = to_unicode(line_arrays[2])
-			country_list.append(City(**b_dict))
+			country_list.append(country(**b_dict))
 	finally:
 		file_obj.close()
 
