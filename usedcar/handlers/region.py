@@ -62,6 +62,7 @@ def get_data():
 	try:
 		list_of_all_lines = file_obj.readlines()
 		for line in list_of_all_lines:
+			print line
 			line = line.strip('\r\n')
 			line_arrays = line.split(',')
 			b_dict = {}
@@ -72,13 +73,14 @@ def get_data():
 		file_obj.close()
 
 	country_file_path = os.path.join(run_path,'data/country.txt')
-	file_obj = open(city_file_path,'r')
+	file_obj = open(country_file_path,'r')
 
 	country_list = []
 
 	try:
 		list_of_all_lines = file_obj.readlines()
 		for line in list_of_all_lines:
+			print line
 			line = line.strip('\r\n')
 			line_arrays = line.split(',')
 			b_dict = {}
