@@ -72,7 +72,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	"""经销商ID"""
 	agency_id = db.Column(db.Integer, default=0)
 
-	"""数据类型, 1:我要卖车,2:鉴定评估,3:出手车辆(不需要预约),4:出售车辆(置换卖),5:出售车辆(经销商代理)"""
+	"""数据类型, 1:我要卖车,2:鉴定评估,3:出售车辆(不需要预约),4:出售车辆(置换卖),5:出售车辆(经销商代理)"""
 	sales_type = db.Column(db.Integer, default=0)
 
 	def __init__(self, **kwargs):
