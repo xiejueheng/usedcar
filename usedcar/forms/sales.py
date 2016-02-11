@@ -284,6 +284,12 @@ class ReplaceForm(BaseForm):
 		description=_('agencyId required')
 	)
 
+	def save(self):
+		salesVehicle = SalesVehicle(**self.data)
+		salesVehicle.sales_type = 4
+		salesVehicle.save()
+		return salesVehicle
+
 """ 6.4.出售车辆（经销商代理） """
 class AgencyForm(BaseForm):
 	""" 品牌ID """
