@@ -72,30 +72,39 @@ def getlist():
 	sourceType = force_int(request.args.get('sourceType'),None)
 	salesStatus = force_int(request.args.get('salesStatus'),None)
 
+	q = db.session.query(VehicleInfo)
+
 	if not brandId:
-		query.append(db.and_(VehicleInfo.brand_id==brandId))
+		#query.append(db.and_(VehicleInfo.brand_id==brandId))
+		q.filter(VehicleInfo.brand_id==brandId)
 
 	if not vehicleTypeId:
-		query.append(db.and_(VehicleInfo.vehicle_type_id==vehicleTypeId))
+		#query.append(db.and_(VehicleInfo.vehicle_type_id==vehicleTypeId))
+		q.filter(VehicleInfo.vehicle_type_id==vehicleTypeId)
 
 	if not name:
 		pass
 
 	if not mileage:
-		query.append(db.and_(VehicleInfo.mileage<=mileage))
+		#query.append(db.and_(VehicleInfo.mileage==mileage))
+		q.filter('mileage<%s' %mileage)
 
 	if not transmission:
 		#query.append(db.and_(VehicleInfo.transmission==transmission))
+		#db.session.query(VehicleInfo).filter(VehicleInfo.transmission==transmission)
 		pass
 
 	if not vehicleAge:
-		query.append(db.and_(VehicleInfo.vehicle_age<=vehicleAge))
+		#query.append(db.and_(VehicleInfo.vehicleAge==vehicleAge))
+		q.filter('vehicle_age<%s' %vehicleAge)
 
 	if not sourceType:
-		query.append(db.and_(VehicleInfo.source_type==sourceType))
+		#query.append(db.and_(VehicleInfo.sourceType==sourceType))
+		q.filter(VehicleInfo.source_type==sourceType)
 
 	if not salesStatus:
-		query.append(db.and_(VehicleInfo.sales_status==salesStatus))
+		#query.append(db.and_(VehicleInfo.sales_status==salesStatus))
+		q.filter(VehicleInfo.sales_status==salesStatus)
 
-	car_list = list(VehicleInfo.query.filter(*query))
+	car_list = list(q.all())
 
