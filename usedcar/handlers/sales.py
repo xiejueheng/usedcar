@@ -7,7 +7,7 @@ from flask import g, request, flash, current_app
 from flask import render_template, redirect, abort, jsonify
 from flask import json
 from flask.ext.babel import gettext as _
-from ..forms import AddForm
+from ..forms import AddForm,AppraiseForm,IndividualForm,ReplaceForm,AgencyForm
 from ..utils import requtils
 from ..models import SalesVehicle,Brand,VehicleType,VehicleStyle
 
@@ -17,7 +17,7 @@ bp = Blueprint('sales', __name__)
 run_path = os.getcwd()
 
 """
-5.1.	我要卖车
+6.1.我要卖车
 """
 @bp.route('/add', methods=['GET','POST'])
 def add():
@@ -33,15 +33,65 @@ def add():
 		js = {'code':508, 'data':form.errors}
 		return '%s(%s)' %('window.usedcar.add',json.dumps(js))
 
-	"""
-	params = requtils.get_params_dict(request)
-	salesVehicle = SalesVehicle(**params)
-	sv = salesVehicle.save()
-	js = {'code':0}
-	print sv
-	return '%s(%s)' %('window.usedcar.add',json.dumps(js))
-	#return abort(403)
-	"""
+"""
+6.2.鉴定评估车辆
+"""
+@bp.route('/appraise', methods=['GET','POST'])
+def appraise():
+	form = AppraiseForm(request.args)
+	if form.validate():
+		salesVehicle = form.save()
+		print salesVehicle
+		js = {'code':0}
+		return '%s(%s)' %('window.usedcar.appraise',json.dumps(js))
+	else:
+		js = {'code':508, 'data':form.errors}
+		return '%s(%s)' %('window.usedcar.appraise',json.dumps(js))
+
+"""
+6.3.出售车辆（不需要预约）
+"""
+@bp.route('/individual', methods=['GET','POST'])
+def individual():
+	form = IndividualForm(request.args)
+	if form.validate():
+		salesVehicle = form.save()
+		print salesVehicle
+		js = {'code':0}
+		return '%s(%s)' %('window.usedcar.individual',json.dumps(js))
+	else:
+		js = {'code':508, 'data':form.errors}
+		return '%s(%s)' %('window.usedcar.individual',json.dumps(js))
+
+"""
+6.4.出售车辆（置换卖）
+"""
+@bp.route('/replace', methods=['GET','POST'])
+def replace():
+	form = ReplaceForm(request.args)
+	if form.validate():
+		salesVehicle = form.save()
+		print salesVehicle
+		js = {'code':0}
+		return '%s(%s)' %('window.usedcar.replace',json.dumps(js))
+	else:
+		js = {'code':508, 'data':form.errors}
+		return '%s(%s)' %('window.usedcar.replace',json.dumps(js))
+
+"""
+6.5.出售车辆（经销商代理）
+"""
+@bp.route('/agency', methods=['GET','POST'])
+def agency():
+	form = AgencyForm(request.args)
+	if form.validate():
+		salesVehicle = form.save()
+		print salesVehicle
+		js = {'code':0}
+		return '%s(%s)' %('window.usedcar.agency',json.dumps(js))
+	else:
+		js = {'code':508, 'data':form.errors}
+		return '%s(%s)' %('window.usedcar.agency',json.dumps(js))
 
 @bp.route('/test', methods=['GET','POST'])
 def test():

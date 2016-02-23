@@ -177,6 +177,9 @@ class VehicleInfo(db.Model, SessionMixin):
 	"""品牌ID"""
 	brand_id = db.Column(db.Integer, default=0)
 
+	"""销售状态 ,1：出售中，2：已售出"""
+	sales_status = db.Column(db.Integer, default=0)
+
 	def __str__(self):
 		return self.id
 

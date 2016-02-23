@@ -6,7 +6,7 @@ from flask import render_template, redirect, url_for, abort
 from flask.ext.babel import gettext as _
 from flask import jsonify
 from flask import json
-from ..models import Brand,VehicleType,VehicleStyle
+from ..models import Brand,VehicleType,VehicleStyle,VehicleInfo,db
 from ..helpers import force_int
 
 __all__ = ['bp']
@@ -57,6 +57,45 @@ def getvehiclestyle():
 		style_json_list.append(s.json())
 	return '%s(%s)' %('window.market.getvehiclestyle',json.dumps({'code':0,'list':style_json_list}))
 
+"""
+4.4.查询车辆列表
+"""
 @bp.route('/getlist', methods=['GET', 'POST'])
 def getlist():
-	pass
+	query = []
+	brandId = force_int(request.args.get('brandId'),None)
+	vehicleTypeId = force_int(request.args.get('vehicleTypeId'),None)
+	name = request.args.get('name')
+	mileage = force_int(request.args.get('mileage'),None)
+	transmission = force_int(request.args.get('transmission'),None)
+	vehicleAge = force_int(request.args.get('vehicleAge'),None)
+	sourceType = force_int(request.args.get('sourceType'),None)
+	salesStatus = force_int(request.args.get('salesStatus'),None)
+
+	if not brandId:
+		query.append(db.and_(VehicleInfo.brand_id==brandId))
+
+	if not vehicleTypeId:
+		query.append(db.and_(VehicleInfo.vehicle_type_id==vehicleTypeId))
+
+	if not name:
+		pass
+
+	if not mileage:
+		query.append(db.and_(VehicleInfo.mileage<=mileage))
+
+	if not transmission:
+		#query.append(db.and_(VehicleInfo.transmission==transmission))
+		pass
+
+	if not vehicleAge:
+		query.append(db.and_(VehicleInfo.vehicle_age<=vehicleAge))
+
+	if not sourceType:
+		query.append(db.and_(VehicleInfo.source_type==sourceType))
+
+	if not salesStatus:
+		query.append(db.and_(VehicleInfo.sales_status==salesStatus))
+
+	car_list = list(VehicleInfo.query.filter(*query))
+

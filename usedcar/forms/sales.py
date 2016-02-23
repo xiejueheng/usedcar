@@ -12,7 +12,7 @@ from ._base import BaseForm
 from ..models import SalesVehicle
 
 __all__ = [
-	'AddForm'
+	'AddForm','AppraiseForm','IndividualForm','AgencyForm','ReplaceForm'
 ]
 
 RESERVED_WORDS = [
@@ -20,7 +20,7 @@ RESERVED_WORDS = [
 ]
 
 
-#我要卖车
+"""我要卖车"""
 class AddForm(BaseForm):
 	""" 品牌ID """
 	brandId = IntegerField(
@@ -70,6 +70,7 @@ class AddForm(BaseForm):
 		salesVehicle.save()
 		return salesVehicle
 
+"""鉴定评估车辆"""
 class AppraiseForm(BaseForm):
 	"""品牌ID"""
 	brandId = IntegerField(
@@ -161,6 +162,7 @@ class AppraiseForm(BaseForm):
 		salesVehicle.save()
 		return salesVehicle
 
+"""6.3.出售车辆（不需要预约）"""
 class IndividualForm(BaseForm):
 	"""品牌ID"""
 	brandId = IntegerField(
@@ -210,7 +212,7 @@ class IndividualForm(BaseForm):
 		salesVehicle.save()
 		return salesVehicle
 
-"""出售车辆（置换卖）"""
+"""6.4.出售车辆（置换卖）"""
 class ReplaceForm(BaseForm):
 	""" 品牌ID """
 	brandId = IntegerField(
@@ -290,7 +292,7 @@ class ReplaceForm(BaseForm):
 		salesVehicle.save()
 		return salesVehicle
 
-""" 6.4.出售车辆（经销商代理） """
+""" 6.5.出售车辆（经销商代理） """
 class AgencyForm(BaseForm):
 	""" 品牌ID """
 	brandId = IntegerField(
