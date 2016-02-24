@@ -206,7 +206,7 @@ class VehicleInfo(db.Model, SessionMixin):
 			self.sales_status = kwargs.pop('salesStatus')
 
 	def __str__(self):
-		return self.id
+		return '%s' % self.id
 
 	def __repr__(self):
 		return '<VehicleInfo: %s>' % self.id
