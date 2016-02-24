@@ -122,5 +122,11 @@ def getlist():
 		q.filter(VehicleInfo.sales_status==salesStatus)
 
 	car_list = list(q.all())
-	print car_list
+	json_list = []
+
+	for c in car_list:
+		json_list.append(c.json())
+
+	js = {'code':0,'list':json_list}
+	return '%s(%s)' %('window.market.getlist',json.dumps(js)) 
 

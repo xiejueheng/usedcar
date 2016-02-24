@@ -211,6 +211,19 @@ class VehicleInfo(db.Model, SessionMixin):
 	def __repr__(self):
 		return '<VehicleInfo: %s>' % self.id
 
+	def json(self):
+		s_dict = {}
+		s_dict['id'] = self.id
+		s_dict['typeId'] = self.vehicle_type_id
+		s_dict['styleId'] = self.vehicle_style_id
+		s_dict['vehicleAge'] = self.vehicle_age
+		s_dict['registerTime'] = self.register_time
+		s_dict['sourceType'] = self.source_type
+		s_dict['brandId'] = self.brand_id
+		s_dict['salesStatus'] = self.sales_status
+
+		return s_dict
+
 
 """
 车辆图片
