@@ -8,6 +8,7 @@ from flask import jsonify
 from flask import json
 from ..models import Brand,VehicleType,VehicleStyle,VehicleInfo,db
 from ..helpers import force_int
+from ..forms import VehicleForm
 
 __all__ = ['bp']
 
@@ -56,6 +57,20 @@ def getvehiclestyle():
 	for s in style_list:
 		style_json_list.append(s.json())
 	return '%s(%s)' %('window.market.getvehiclestyle',json.dumps({'code':0,'list':style_json_list}))
+
+"""4.5.添加二手车辆信息/market/add"""
+@bp.route('/add', methods=['GET','POST'])
+def add():
+	form = VehicleForm(request.args)
+	if form.validate():
+	#print form.errors
+		salesVehicle = form.save()
+		print salesVehicle
+		js = {'code':0}
+		return '%s(%s)' %('window.market.add',json.dumps(js))
+	else:
+		js = {'code':508, 'data':form.errors}
+		return '%s(%s)' %('window.market.add',json.dumps(js))
 
 """
 4.4.查询车辆列表
@@ -107,4 +122,5 @@ def getlist():
 		q.filter(VehicleInfo.sales_status==salesStatus)
 
 	car_list = list(q.all())
+	print car_list
 

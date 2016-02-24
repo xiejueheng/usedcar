@@ -180,6 +180,31 @@ class VehicleInfo(db.Model, SessionMixin):
 	"""销售状态 ,1：出售中，2：已售出"""
 	sales_status = db.Column(db.Integer, default=0)
 
+	def __init__(self, **kwargs):
+		if 'styleId' in kwargs:
+			self.vehicle_style_id = kwargs.pop('styleId')
+		
+		if 'typeId' in kwargs:
+			self.mileage =  kwargs.pop('typeId')
+
+		if 'vehicleAge' in kwargs:
+			self.vehicle_age = kwargs.pop('vehicleAge')
+
+		if 'registerTime' in kwargs:
+			self.register_time = kwargs.pop('registerTime')
+
+		if 'sourceType' in kwargs:
+			self.source_type = kwargs.pop('sourceType')
+
+		if 'typeId' in kwargs:
+			self.vehicle_type_id = kwargs.pop('typeId')
+
+		if 'brandId' in kwargs:
+			self.brand_id = kwargs.pop('brandId')
+
+		if 'salesStatus' in kwargs:
+			self.sales_status = kwargs.pop('salesStatus')
+
 	def __str__(self):
 		return self.id
 
