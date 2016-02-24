@@ -44,8 +44,8 @@ class VehicleForm(BaseForm):
 
 	"""上牌时间"""
 	registerTime = IntegerField(
-		'registerTime', validators=[DataRequired()],
-		description=_('registerTime required')
+		'registerTime', validators=[],
+		description=_('')
 	)
 
 	"""车源类型"""
