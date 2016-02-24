@@ -228,11 +228,11 @@ class VehicleInfo(db.Model, SessionMixin):
 			s_dict['brandInfoName'] = brand.name
 
 		vehicleType = VehicleType.query.filter_by(id=self.typeId).first()
-		if brand:
+		if vehicleType:
 			s_dict['styleName'] = vehicleType.name
 
 		vehicleStyle = VehicleStyle.query.filter_by(id=self.styleId).first()
-		if brand:
+		if vehicleStyle:
 			s_dict['vehicleStyle'] = vehicleStyle.json()
 
 		return s_dict
