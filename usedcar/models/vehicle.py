@@ -223,7 +223,7 @@ class VehicleInfo(db.Model, SessionMixin):
 		s_dict['brandId'] = self.brand_id
 		s_dict['salesStatus'] = self.sales_status
 
-		brand = Brand.query.filter_by(id=self.brand_id).limit(1)
+		brand = Brand.query.filter_by(id=self.brand_id).first()
 		if brand:
 			s_dict['brandInfoName'] = brand.name
 
