@@ -3,6 +3,7 @@
 import hashlib
 from datetime import datetime
 from ._base import db, SessionMixin
+from brand import Brand
 
 __all__ = ['VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto']
 
@@ -221,6 +222,10 @@ class VehicleInfo(db.Model, SessionMixin):
 		s_dict['sourceType'] = self.source_type
 		s_dict['brandId'] = self.brand_id
 		s_dict['salesStatus'] = self.sales_status
+
+		brand = Brand.query.filter_by(id=self.brand_id).limit(1)
+		if brand:
+			s_dict['brandInfoName'] = brand.name
 
 		return s_dict
 

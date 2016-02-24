@@ -54,6 +54,12 @@ class VehicleForm(BaseForm):
 		description=_('sourceType required')
 	)
 
+	"""销售状态"""
+	salesStatus = IntegerField(
+		'salesStatus', validators=[],
+		description=_('')
+	)
+
 	def save(self):
 		salesVehicle = VehicleInfo(**self.data)
 		salesVehicle.save()
