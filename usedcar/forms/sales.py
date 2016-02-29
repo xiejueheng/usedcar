@@ -184,8 +184,8 @@ class IndividualForm(BaseForm):
 
 	""" 上牌时间，年份 """
 	licesingYear = IntegerField(
-		'licesingYear', validators=[DataRequired()],
-		description=_('licesingYear required')
+		'licesingYear', validators=[],
+		description=_('')
 	)
 
 	""" 里程 """
