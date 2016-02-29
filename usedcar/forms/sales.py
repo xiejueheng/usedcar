@@ -92,8 +92,8 @@ class AppraiseForm(BaseForm):
 
 	""" 上牌时间"""
 	licesingYear = IntegerField(
-		'licesingYear', validators=[DataRequired()],
-		description=_('licesingYear required')
+		'licesingYear', validators=[],
+		description=_('')
 	)
 
 	""" 裸车价格"""
