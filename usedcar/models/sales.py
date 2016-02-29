@@ -105,7 +105,7 @@ class SalesVehicle(db.Model, SessionMixin):
 			self.country = country
 
 		if 'licesingYear' in kwargs:
-			licesing_year = kwargs.pop('licesing_year')
+			licesing_year = kwargs.pop('licesingYear')
 			self.licesing_year = licesing_year
 
 		if 'mileage' in kwargs:
