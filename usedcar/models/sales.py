@@ -52,7 +52,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	production_status = db.Column(db.Integer, default=0)
 
 	"""上牌地点"""
-	licesing_place = db.Column(db.String(11), nullable=True)
+	licesing_place = db.Column(db.Integer, default=0)
 
 	"""期待多久卖掉"""
 	sales_time = db.Column(db.String(11), nullable=True)

@@ -98,26 +98,26 @@ class AppraiseForm(BaseForm):
 
 	""" 裸车价格"""
 	price = IntegerField(
-		'price', validators=[DataRequired()],
-		description=_('price required')
+		'price', validators=[],
+		description=_('')
 	)
 
 	""" 车辆状况"""
 	status = IntegerField(
-		'status', validators=[DataRequired()],
-		description=_('status required')
+		'status', validators=[],
+		description=_('')
 	)
 
 	""" 使用频率"""
 	useFrequency = IntegerField(
-		'useFrequency', validators=[DataRequired()],
-		description=_('useFrequency required')
+		'useFrequency', validators=[],
+		description=_('')
 	)
 
 	""" 生产情况"""
 	productionStatus = IntegerField(
-		'productionStatus', validators=[DataRequired()],
-		description=_('productionStatus required')
+		'productionStatus', validators=[],
+		description=_('')
 	)
 
 	"""车主姓名"""
@@ -133,15 +133,9 @@ class AppraiseForm(BaseForm):
 	)
 
 	"""车辆所在城市"""
-	city = IntegerField(
-		'city', validators=[DataRequired()],
-		description=_('city required')
-	)
-
-	"""车辆所在区域（区、县）"""
-	country = IntegerField(
-		'country', validators=[DataRequired()],
-		description=_('country required')
+	licesingPlace = IntegerField(
+		'licesingPlace', validators=[DataRequired()],
+		description=_('licesingPlace required')
 	)
 
 	"""期待多久卖掉"""
