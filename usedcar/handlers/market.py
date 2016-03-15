@@ -89,35 +89,35 @@ def getlist():
 
 	q = db.session.query(VehicleInfo)
 
-	if not brandId:
+	if brandId:
 		#query.append(db.and_(VehicleInfo.brand_id==brandId))
 		q.filter(VehicleInfo.brand_id==brandId)
 
-	if not vehicleTypeId:
+	if vehicleTypeId:
 		#query.append(db.and_(VehicleInfo.vehicle_type_id==vehicleTypeId))
 		q.filter(VehicleInfo.vehicle_type_id==vehicleTypeId)
 
-	if not name:
+	if name:
 		pass
 
-	if not mileage:
+	if mileage:
 		#query.append(db.and_(VehicleInfo.mileage==mileage))
 		q.filter('mileage<%s' %mileage)
 
-	if not transmission:
+	if transmission:
 		#query.append(db.and_(VehicleInfo.transmission==transmission))
 		#db.session.query(VehicleInfo).filter(VehicleInfo.transmission==transmission)
 		pass
 
-	if not vehicleAge:
+	if vehicleAge:
 		#query.append(db.and_(VehicleInfo.vehicleAge==vehicleAge))
 		q.filter('vehicle_age<%s' %vehicleAge)
 
-	if not sourceType:
+	if sourceType:
 		#query.append(db.and_(VehicleInfo.sourceType==sourceType))
 		q.filter(VehicleInfo.source_type==sourceType)
 
-	if not salesStatus:
+	if salesStatus:
 		#query.append(db.and_(VehicleInfo.sales_status==salesStatus))
 		q.filter(VehicleInfo.sales_status==salesStatus)
 

@@ -9,6 +9,7 @@ from flask import json
 from flask.ext.babel import gettext as _
 from ..forms import AddForm,AppraiseForm,IndividualForm,ReplaceForm,AgencyForm
 from ..utils import requtils
+from ..helpers import force_int
 from ..models import SalesVehicle,Brand,VehicleType,VehicleStyle
 
 __all__ = ['bp']
@@ -93,12 +94,24 @@ def agency():
 		js = {'code':508, 'data':form.errors}
 		return '%s(%s)' %('window.usedcar.agency',json.dumps(js))
 
-@bp.route('/test', methods=['GET','POST'])
-def test():
-	print SalesVehicle.query.all()
-	print SalesVehicle.query.order_by(SalesVehicle.id).all()
-	print SalesVehicle.query.first()
-	return ""
+"""6.6.查询卖车信息"""
+@bp.route('/query', methods=['GET','POST'])
+def query():
+	salesType = force_int(request.args.get('salesType'))
+
+	if not salesType:
+		return abort(404)
+
+	q = db.session.query(SalesVehicle)
+	q.filter(SalesVehicle.sales_type==salesType)
+	car_list = list(q.all())
+	json_list = []
+
+	for c in car_list:
+		json_list.append(c.json())
+
+	js = {'code':0,'list':json_list}
+	return '%s(%s)' %('window.sales.query',json.dumps(js)) 
 
 @bp.route('/load', methods=['GET','POST'])
 def load():
