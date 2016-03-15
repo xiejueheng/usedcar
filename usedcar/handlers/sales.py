@@ -102,9 +102,13 @@ def query():
 	if not salesType:
 		return abort(404)
 
+	"""
 	q = db.session.query(SalesVehicle)
 	q.filter(SalesVehicle.sales_type==salesType)
 	car_list = list(q.all())
+	"""
+
+	car_list=list(SalesVehicle.query.filter_by(sales_type=salesType))
 	json_list = []
 
 	for c in car_list:
@@ -112,6 +116,8 @@ def query():
 
 	js = {'code':0,'list':json_list}
 	return '%s(%s)' %('window.sales.query',json.dumps(js)) 
+
+
 
 @bp.route('/load', methods=['GET','POST'])
 def load():
