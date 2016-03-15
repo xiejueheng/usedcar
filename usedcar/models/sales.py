@@ -57,7 +57,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	"""期待多久卖掉"""
 	sales_time = db.Column(db.String(11), nullable=True)
 
-	"""0：鉴定评估,1：快速估价"""
+	"""1：鉴定评估,2：快速估价"""
 	type = db.Column(db.Integer, default=0)
 
 	"""置换品牌ID"""
@@ -168,6 +168,32 @@ class SalesVehicle(db.Model, SessionMixin):
 
 	def __repr__(self):
 		return '<SalesVehicle: %d>' % self.id
+
+	def json(self):
+		s_dict={}
+		s_dict['id']=self.id
+		s_dict['brandId']=self.brand_id
+		s_dict['typeId']=self.type_id
+		s_dict['styleId']=self.style_id
+		s_dict['name']=self.name
+		s_dict['mobile']=self.mobile
+		s_dict['city']=self.city
+		s_dict['country']=self.country
+		s_dict['licesingYear']=self.licesing_year
+		s_dict['mileage']=self.mileage
+		s_dict['price']=self.price
+		s_dict['status']=self.status
+		s_dict['useFrequency']=self.use_frequency
+		s_dict['productionStatus']=self.production_status
+		s_dict['licesingPlace']=self.licesing_place
+		s_dict['salesTime']=self.sales_time
+		s_dict['type']=self.type
+		s_dict['replaceBrandId']=self.replace_brand_id
+		s_dict['replaceTypeId']=self.replace_type_id
+		s_dict['replaceStyleId']=self.replace_style_id
+		s_dict['agencyId']=self.agency_id
+		s_dict['salesType']=self.sales_type
+		return s_dict
 
 	def save(self):
 		db.session.add(self)
