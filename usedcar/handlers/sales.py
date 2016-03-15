@@ -10,7 +10,7 @@ from flask.ext.babel import gettext as _
 from ..forms import AddForm,AppraiseForm,IndividualForm,ReplaceForm,AgencyForm
 from ..utils import requtils
 from ..helpers import force_int
-from ..models import SalesVehicle,Brand,VehicleType,VehicleStyle
+from ..models import SalesVehicle,Brand,VehicleType,VehicleStyle,db
 
 __all__ = ['bp']
 
