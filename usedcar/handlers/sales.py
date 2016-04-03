@@ -98,8 +98,9 @@ def agency():
 @bp.route('/query', methods=['GET','POST'])
 def query():
 	salesType = force_int(request.args.get('salesType'))
+	submitDate = force_int(request.args.get('submitDate'))
 
-	if not salesType:
+	if not salesType or not submitDate:
 		return abort(404)
 
 	"""
@@ -108,7 +109,7 @@ def query():
 	car_list = list(q.all())
 	"""
 
-	car_list=list(SalesVehicle.query.filter_by(sales_type=salesType))
+	car_list=list(SalesVehicle.query.filter_by(sales_type=salesType,submitDate=submitDate))
 	json_list = []
 
 	for c in car_list:
