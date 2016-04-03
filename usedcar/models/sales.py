@@ -75,6 +75,8 @@ class SalesVehicle(db.Model, SessionMixin):
 	"""数据类型, 1:我要卖车,2:鉴定评估,3:出售车辆(不需要预约),4:出售车辆(置换卖),5:出售车辆(经销商代理)"""
 	sales_type = db.Column(db.Integer, default=0)
 
+	timestamp = db.Column(db.Integer, default=0)
+
 	def __init__(self, **kwargs):
 		if 'brandId' in kwargs:
 			brandId = kwargs.pop('brandId')
@@ -160,6 +162,10 @@ class SalesVehicle(db.Model, SessionMixin):
 			sales_type = kwargs.pop('salesType')
 			self.sales_type = sales_type
 
+		if 'timestamp' in kwargs:
+			timestamp = kwargs.pop('timestamp')
+			self.timestamp = timestamp
+
 		for k, v in kwargs.items():
 			setattr(self, k, v)
 
@@ -193,6 +199,7 @@ class SalesVehicle(db.Model, SessionMixin):
 		s_dict['replaceStyleId']=self.replace_style_id
 		s_dict['agencyId']=self.agency_id
 		s_dict['salesType']=self.sales_type
+		s_dict['timestamp'] = self.timestamp
 		return s_dict
 
 	def save(self):

@@ -181,6 +181,9 @@ class VehicleInfo(db.Model, SessionMixin):
 	"""销售状态 ,1：出售中，2：已售出"""
 	sales_status = db.Column(db.Integer, default=0)
 
+	"""图片列表"""
+	image_list = db.Column(db.String(1000), default='')
+
 	def __init__(self, **kwargs):
 		if 'styleId' in kwargs:
 			self.vehicle_style_id = kwargs.pop('styleId')
@@ -206,6 +209,9 @@ class VehicleInfo(db.Model, SessionMixin):
 		if 'salesStatus' in kwargs:
 			self.sales_status = kwargs.pop('salesStatus')
 
+		if 'imageList' in kwargs:
+			self.image_list = kwargs.pop('imageList')
+
 	def __str__(self):
 		return '%s' % self.id
 
@@ -222,6 +228,7 @@ class VehicleInfo(db.Model, SessionMixin):
 		s_dict['sourceType'] = self.source_type
 		s_dict['brandId'] = self.brand_id
 		s_dict['salesStatus'] = self.sales_status
+		s_dict['imageList'] = self.image_list
 
 		brand = Brand.query.filter_by(id=self.brand_id).first()
 		if brand:

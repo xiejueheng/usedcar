@@ -60,6 +60,11 @@ class VehicleForm(BaseForm):
 		description=_('')
 	)
 
+	imageList = StringField(
+		'imageList', validators=[DataRequired()],
+		description=_('imageList required')
+	)
+
 	def save(self):
 		salesVehicle = VehicleInfo(**self.data)
 		salesVehicle.save()

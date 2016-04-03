@@ -64,6 +64,11 @@ class AddForm(BaseForm):
 		description=_('country required')
 	)
 
+	timestamp = IntegerField(
+		'timestamp', validators=[DataRequired()],
+		description=_('timestamp required')
+	)
+
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 1
@@ -150,6 +155,11 @@ class AppraiseForm(BaseForm):
 		description=_('type required')
 	)
 
+	timestamp = IntegerField(
+		'timestamp', validators=[DataRequired()],
+		description=_('timestamp required')
+	)
+
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 2
@@ -198,6 +208,11 @@ class IndividualForm(BaseForm):
 	price = IntegerField(
 		'price', validators=[DataRequired()],
 		description=_('price required')
+	)
+
+	timestamp = IntegerField(
+		'timestamp', validators=[DataRequired()],
+		description=_('timestamp required')
 	)
 
 	def save(self):
@@ -280,6 +295,11 @@ class ReplaceForm(BaseForm):
 		description=_('agencyId required')
 	)
 
+	timestamp = IntegerField(
+		'timestamp', validators=[DataRequired()],
+		description=_('timestamp required')
+	)
+
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 4
@@ -328,6 +348,11 @@ class AgencyForm(BaseForm):
 	verifyCode = StringField(
 		_('verifyCode'), validators=[DataRequired()],
 		description=_('verifyCode required')
+	)
+
+	timestamp = IntegerField(
+		'timestamp', validators=[DataRequired()],
+		description=_('timestamp required')
 	)
 
 	def save(self):
