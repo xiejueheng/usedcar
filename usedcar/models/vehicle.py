@@ -298,7 +298,7 @@ class VehicleTransition(db.Model, SessionMixin):
 			name = kwargs.pop('name')
 			self.name = name
 
-		if 'mobile' in mobile:
+		if 'mobile' in kwargs:
 			mobile = kwargs.pop('mobile')
 			self.mobile = mobile
 
