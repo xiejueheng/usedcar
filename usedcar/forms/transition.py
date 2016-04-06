@@ -46,6 +46,11 @@ class TransitionAddForm(BaseForm):
 		description=_('city required')
 	)
 
+	timestamp = IntegerField(
+		'timestamp', validators=[DataRequired()],
+		description=_('timestamp required')
+	)
+
 	def save(self):
 		transition = VehicleTransition(**self.data)
 		transition.save()
