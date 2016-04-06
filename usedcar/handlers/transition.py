@@ -45,6 +45,7 @@ def query():
 	dt = datetime.datetime.strptime(submitDate,'%Y%m')
 	end_timestamp = int(time.mktime(datetime.date(dt.year,dt.month+1,1).timetuple()))
 	q = db.session.query(VehicleTransition)
+	print start_timestamp, end_timestamp
 	#car_list = list(VehicleTransition.query.filter_by(timestamp=timestamp))
 	car_list=list(q.filter(and_(VehicleTransition.timestamp>=start_timestamp, VehicleTransition.timestamp<=end_timestamp)).all())
 	json_list = []
