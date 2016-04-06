@@ -167,7 +167,7 @@ class VehicleInfo(db.Model, SessionMixin):
 	vehicle_age = db.Column(db.Integer, default=0)
 
 	"""上牌时间（时间戳）"""
-	register_time = db.Column(db.DateTime, default=datetime.utcnow)
+	register_time = db.Column(db.Integer, default=0)
 
 	"""车源类型,1:认证车,2:商户车源,3:其他车源"""
 	source_type = db.Column(db.Integer, default=0)
@@ -261,4 +261,54 @@ class VehiclePhoto(db.Model, SessionMixin):
 	def __repr__(self):
 		return '<VehiclePhoto: %s_%s>' % (self.id,self.vehicle_id)
 
+class VehicleTransition(db.Model, SessionMixin):
+	id = db.Column(db.Integer, primary_key=True)
+
+	"""车务类型名称"""
+	transition = db.Column(db.String(1000), nullable=False)
+
+	"""车辆所在城市"""
+	city = db.Column(db.Integer, default=0)
+
+	"""办理车务者姓名"""
+	name = db.Column(db.String(100), nullable=True)
+
+	"""手机号码"""
+	mobile = db.Column(db.String(11), nullable=True)
+
+	def __str__(self):
+		return '%s %s' %(self.id, self.transition)
+
+	def __repr__(self):
+		return '<VehicleTransition: %s_%s>' % (self.id,self.transition)
 	
+	def __init__(self,**kwargs):
+		if 'transition' in kwargs
+			transition = kwargs.pop('transition')
+			self.transition = transition
+
+		if 'city' in kwargs:
+			city = kwargs.pop('city')
+			self.city = city
+
+		if 'name' in kwargs:
+			name = kwargs.pop('name')
+			self.name = name
+
+		if 'mobile' in mobile:
+			mobile = kwargs.pop('mobile')
+			self.mobile = mobile
+
+	def json(self):
+		s_dict={}
+		s_dict['id']=self.id
+		s_dict['transition']=self.transition
+		s_dict['city'] = self.city
+		s_dict['name'] = self.name
+		s_dict['mobile'] = self.mobile
+		return s_dict
+
+	def save(self):
+		db.session.add(self)
+		db.session.commit()
+		return self
