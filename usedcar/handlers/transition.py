@@ -4,6 +4,7 @@ import time
 import datetime
 import os
 import os.path
+from sqlalchemy.sql import and_
 from flask import Blueprint
 from flask import g, request, flash, current_app
 from flask import render_template, redirect, abort, jsonify
@@ -39,8 +40,13 @@ def query():
 	if not submitDate:
 		return abort(404)
 
-	timestamp = time.mktime( time.strptime(submitDate,'%Y%m'))
-	car_list = list(VehicleTransition.query.filter_by(timestamp=timestamp))
+	s_time = time.strptime(submitDate,'%Y%m')
+	end_timestamp = int(time.mktime( s_time ))
+	dt = datetime.datetime.strptime(submitDate,'%Y%m')
+	start_timestamp = int(time.mktime(datetime.date(dt.year,dt.month-1,1).timetuple()))
+	q = db.session.query(VehicleTransition)
+	#car_list = list(VehicleTransition.query.filter_by(timestamp=timestamp))
+	car_list=q.filter(and_(VehicleTransition.timestamp>=start_timestamp, VehicleTransition.timestamp<=end_timestamp).all())
 	json_list = []
 
 	for c in car_list:
