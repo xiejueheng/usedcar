@@ -319,4 +319,5 @@ class VehicleTransition(db.Model, SessionMixin):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+		print self
 		return self
