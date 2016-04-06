@@ -110,12 +110,12 @@ def query():
 	"""
 
 	s_time = time.strptime(submitDate,'%Y%m')
-	end_timestamp = int(time.mktime( s_time ))
+	start_timestamp = int(time.mktime( s_time ))
 	dt = datetime.datetime.strptime(submitDate,'%Y%m')
-	start_timestamp = int(time.mktime(datetime.date(dt.year,dt.month-1,1).timetuple()))
+	end_timestamp = int(time.mktime(datetime.date(dt.year,dt.month+1,1).timetuple()))
 	q = db.session.query(SalesVehicle)
 
-	car_list=q.filter(and_(sales_type==salesType,SalesVehicle.timestamp>=start_timestamp, SalesVehicle.timestamp<=end_timestamp).all())
+	car_list=list(q.filter(and_(sales_type==salesType,SalesVehicle.timestamp>=start_timestamp, SalesVehicle.timestamp<=end_timestamp)).all())
 	#car_list=list(SalesVehicle.query.filter_by(sales_type=salesType,timestamp=timestamp))
 	json_list = []
 

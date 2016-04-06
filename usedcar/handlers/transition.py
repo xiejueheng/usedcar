@@ -41,12 +41,12 @@ def query():
 		return abort(404)
 
 	s_time = time.strptime(submitDate,'%Y%m')
-	end_timestamp = int(time.mktime( s_time ))
+	start_timestamp = int(time.mktime( s_time ))
 	dt = datetime.datetime.strptime(submitDate,'%Y%m')
-	start_timestamp = int(time.mktime(datetime.date(dt.year,dt.month-1,1).timetuple()))
+	end_timestamp = int(time.mktime(datetime.date(dt.year,dt.month+1,1).timetuple()))
 	q = db.session.query(VehicleTransition)
 	#car_list = list(VehicleTransition.query.filter_by(timestamp=timestamp))
-	car_list=q.filter(and_(VehicleTransition.timestamp>=start_timestamp, VehicleTransition.timestamp<=end_timestamp).all())
+	car_list=list(q.filter(and_(VehicleTransition.timestamp>=start_timestamp, VehicleTransition.timestamp<=end_timestamp)).all())
 	json_list = []
 
 	for c in car_list:
