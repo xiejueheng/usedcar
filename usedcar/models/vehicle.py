@@ -282,7 +282,7 @@ class VehicleTransition(db.Model, SessionMixin):
 	def __repr__(self):
 		return '<VehicleTransition: %s_%s>' % (self.id,self.transition)
 	
-	def __init__(self,**kwargs):
+	def __init__(self, **kwargs):
 		if 'transition' in kwargs
 			transition = kwargs.pop('transition')
 			self.transition = transition
