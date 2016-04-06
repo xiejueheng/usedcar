@@ -72,7 +72,7 @@ def register_routes(app):
     app.register_blueprint(market.bp, url_prefix='/market')
     app.register_blueprint(sales.bp, url_prefix='/sales')
     app.register_blueprint(region.bp, url_prefix='/region')
-    app.register_blueprint(transition.bp, url_prefix='/transition')
+    app.register_blueprint(transition.bp, url_prefix='/transitions')
     '''
     from .handlers import front, account, node, topic, user, admin
     app.register_blueprint(account.bp, url_prefix='/account')

@@ -16,7 +16,7 @@ from ..models import SalesVehicle,Brand,VehicleType,VehicleStyle,VehicleTransiti
 
 __all__ = ['bp']
 
-bp = Blueprint('transition', __name__)
+bp = Blueprint('transitions', __name__)
 run_path = os.getcwd()
 
 """车务办理"""
