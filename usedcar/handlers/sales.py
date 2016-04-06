@@ -109,7 +109,8 @@ def query():
 	car_list = list(q.all())
 	"""
 
-	car_list=list(SalesVehicle.query.filter_by(sales_type=salesType,timestamp=submitDate))
+	timestamp = time.mktime( time.strptime(submitDate,'%Y%m'))
+	car_list=list(SalesVehicle.query.filter_by(sales_type=salesType,timestamp=timestamp))
 	json_list = []
 
 	for c in car_list:

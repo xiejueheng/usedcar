@@ -5,7 +5,7 @@ from datetime import datetime
 from ._base import db, SessionMixin
 from brand import Brand
 
-__all__ = ['VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto']
+__all__ = ['VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto', 'VehicleTransition']
 
 """
 车型VehicleType model
@@ -276,6 +276,9 @@ class VehicleTransition(db.Model, SessionMixin):
 	"""手机号码"""
 	mobile = db.Column(db.String(11), nullable=True)
 
+	"""时间戳"""
+	timestamp = db.Column(db.Integer, default=0)
+
 	def __str__(self):
 		return '%s %s' %(self.id, self.transition)
 
@@ -299,6 +302,10 @@ class VehicleTransition(db.Model, SessionMixin):
 			mobile = kwargs.pop('mobile')
 			self.mobile = mobile
 
+		if 'timestamp' in kwargs:
+			timestamp = kwargs.pop('timestamp')
+			self.timestamp = timestamp
+
 	def json(self):
 		s_dict={}
 		s_dict['id']=self.id
@@ -306,6 +313,7 @@ class VehicleTransition(db.Model, SessionMixin):
 		s_dict['city'] = self.city
 		s_dict['name'] = self.name
 		s_dict['mobile'] = self.mobile
+		s_dict['timestamp'] = self.timestamp
 		return s_dict
 
 	def save(self):
