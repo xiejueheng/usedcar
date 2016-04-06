@@ -280,7 +280,7 @@ class VehicleTransition(db.Model, SessionMixin):
 	timestamp = db.Column(db.Integer, default=0)
 
 	def __str__(self):
-		return '%s %s' %(self.id, self.transition)
+		return '%s %s %s' %(self.id, self.transition, self.timestamp)
 
 	def __repr__(self):
 		return '<VehicleTransition: %s_%s>' % (self.id,self.transition)
