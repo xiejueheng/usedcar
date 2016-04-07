@@ -5,7 +5,7 @@ from datetime import datetime
 from ._base import db, SessionMixin
 from brand import Brand
 
-__all__ = ['VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto', 'VehicleTransition']
+__all__ = ['VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto', 'VehicleTransition', 'VehiclePurchase']
 
 """
 车型VehicleType model
@@ -261,6 +261,9 @@ class VehiclePhoto(db.Model, SessionMixin):
 	def __repr__(self):
 		return '<VehiclePhoto: %s_%s>' % (self.id,self.vehicle_id)
 
+"""
+车务办理
+"""
 class VehicleTransition(db.Model, SessionMixin):
 	id = db.Column(db.Integer, primary_key=True)
 
@@ -312,6 +315,92 @@ class VehicleTransition(db.Model, SessionMixin):
 		s_dict['transition']=self.transition
 		s_dict['city'] = self.city
 		s_dict['name'] = self.name
+		s_dict['mobile'] = self.mobile
+		s_dict['timestamp'] = self.timestamp
+		return s_dict
+
+	def save(self):
+		db.session.add(self)
+		db.session.commit()
+		print self
+		return self
+
+"""我要买车"""
+class VehiclePurchase(db.Model, SessionMixin):
+	id = db.Column(db.Integer, primary_key=True)
+
+	"""买家姓名"""
+	name = db.Column(db.String(100), nullable=True)
+
+	"""手机号码"""
+	mobile = db.Column(db.String(11), nullable=True)
+
+	"""品牌ID"""
+	brand_id = db.Column(db.Integer, default=0)
+
+	"""车型id"""
+	type_id = db.Column(db.Integer, default=0)
+
+	"""车龄"""
+	car_age = db.Column(db.Integer, default=0)
+
+	"""所在城市"""
+	city = db.Column(db.Integer, default=0)
+
+	"""其它说明"""
+	common = db.Column(db.String(2000), nullable=True)
+
+	"""时间戳"""
+	timestamp = db.Column(db.Integer, default=0)
+
+	def __str__(self):
+		return '%s %s %s' %(self.id, self.name, self.mobile)
+
+	def __repr__(self):
+		return '<VehiclePurchase: %s_%s>' % (self.id,self.name)
+
+	def __init__(self, **kwargs):
+		if 'name' in kwargs:
+			name = kwargs.pop('name')
+			self.name = name
+
+		if 'city' in kwargs:
+			city = kwargs.pop('city')
+			self.city = city
+
+		if 'brandId' in kwargs:
+			brand_id = kwargs.pop('brandId')
+			self.brand_id = brand_id
+
+		if 'typeId' in kwargs:
+			type_id = kwargs.pop('typeId')
+			self.type_id = type_id
+
+		if 'carAge' in kwargs:
+			carAge = kwargs.pop('carAge')
+			self.car_age = carAge
+
+		if 'common' in kwargs:
+			common = kwargs.pop('common')
+			self.common = common
+
+		if 'mobile' in kwargs:
+			mobile = kwargs.pop('mobile')
+			self.mobile = mobile
+
+		if 'timestamp' in kwargs:
+			timestamp = kwargs.pop('timestamp')
+			self.timestamp = timestamp
+
+	def json(self):
+		s_dict={}
+		s_dict['id']=self.id
+		s_dict['brandId']=self.brand_id
+		s_dict['typeId']=self.type_id
+		s_dict['carAge']=self.car_age
+		s_dict['city'] = self.city
+		s_dict['name'] = self.name
+		s_dict['common'] = self.common
 		s_dict['mobile'] = self.mobile
 		s_dict['timestamp'] = self.timestamp
 		return s_dict

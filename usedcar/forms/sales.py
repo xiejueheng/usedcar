@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import time
 from flask import current_app
 from wtforms import TextField, PasswordField, BooleanField, StringField, IntegerField
 from wtforms import TextAreaField
@@ -64,14 +65,10 @@ class AddForm(BaseForm):
 		description=_('country required')
 	)
 
-	timestamp = IntegerField(
-		'timestamp', validators=[DataRequired()],
-		description=_('timestamp required')
-	)
-
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 1
+		salesVehicle.timestamp = int(time.time())
 		salesVehicle.save()
 		return salesVehicle
 
@@ -155,14 +152,10 @@ class AppraiseForm(BaseForm):
 		description=_('type required')
 	)
 
-	timestamp = IntegerField(
-		'timestamp', validators=[DataRequired()],
-		description=_('timestamp required')
-	)
-
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 2
+		salesVehicle.timestamp = int(time.time())
 		salesVehicle.save()
 		return salesVehicle
 
@@ -210,14 +203,10 @@ class IndividualForm(BaseForm):
 		description=_('price required')
 	)
 
-	timestamp = IntegerField(
-		'timestamp', validators=[DataRequired()],
-		description=_('timestamp required')
-	)
-
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 3
+		salesVehicle.timestamp = int(time.time())
 		salesVehicle.save()
 		return salesVehicle
 
@@ -295,14 +284,10 @@ class ReplaceForm(BaseForm):
 		description=_('agencyId required')
 	)
 
-	timestamp = IntegerField(
-		'timestamp', validators=[DataRequired()],
-		description=_('timestamp required')
-	)
-
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 4
+		salesVehicle.timestamp = int(time.time())
 		salesVehicle.save()
 		return salesVehicle
 
@@ -350,13 +335,9 @@ class AgencyForm(BaseForm):
 		description=_('verifyCode required')
 	)
 
-	timestamp = IntegerField(
-		'timestamp', validators=[DataRequired()],
-		description=_('timestamp required')
-	)
-
 	def save(self):
 		salesVehicle = SalesVehicle(**self.data)
 		salesVehicle.sales_type = 5
+		salesVehicle.timestamp = int(time.time())
 		salesVehicle.save()
 		return salesVehicle

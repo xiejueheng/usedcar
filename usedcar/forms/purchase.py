@@ -10,10 +10,10 @@ from wtforms.validators import Optional, URL
 from flask_babel import lazy_gettext as _
 
 from ._base import BaseForm
-from ..models import VehicleTransition
+from ..models import VehiclePurchase
 
 __all__ = [
-	'TransitionAddForm'
+	'PurchaseAddForm'
 ]
 
 RESERVED_WORDS = [
@@ -21,15 +21,10 @@ RESERVED_WORDS = [
 ]
 
 
-"""我要卖车"""
-class TransitionAddForm(BaseForm):
-	""" 车务类型名称 """
-	transition = StringField(
-		'brandId', validators=[DataRequired()],
-		description=_('transition required')
-	)
+"""我要买车"""
+class PurchaseAddForm(BaseForm):
 
-	"""办理车务者姓名"""
+	"""买车姓名"""
 	name = StringField(
 		'name', validators=[DataRequired()],
 		description=_('name required')
@@ -41,14 +36,38 @@ class TransitionAddForm(BaseForm):
 		description=_('mobile required')
 	)
 
-	"""车辆所在城市"""
+	"""所在城市"""
 	city = IntegerField(
 		'city', validators=[DataRequired()],
 		description=_('city required')
 	)
 
+	"""品牌ID"""
+	brandId = IntegerField(
+		'brandId', validators=[DataRequired()],
+		description=_('brandId required')
+	)
+
+	"""车型ID"""
+	typeId = IntegerField(
+		'typeId', validators=[DataRequired()],
+		description=_('typeId required')
+	)
+
+	"""车龄"""
+	carAge = IntegerField(
+		'carAge', validators=[],
+		description=_('')
+	)
+
+	"""其它说明"""
+	common = StringField(
+		'common', validators=[],
+		description=_('')
+	)
+
 	def save(self):
-		transition = VehicleTransition(**self.data)
-		transition.timestamp = int(time.time())
-		transition.save()
-		return transition
+		purchase = VehiclePurchase(**self.data)
+		purchase.timestamp = int(time.time())
+		purchase.save()
+		return purchase
