@@ -4,6 +4,7 @@ import time
 import datetime
 import os
 import os.path
+from sqlalchemy.sql import and_
 from flask import Blueprint
 from flask import g, request, flash, current_app
 from flask import render_template, redirect, abort, jsonify
