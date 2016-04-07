@@ -2,7 +2,7 @@
 
 import time
 from flask import current_app
-from wtforms import TextField, PasswordField, BooleanField, StringField, IntegerField
+from wtforms import TextField,FloatField, PasswordField, BooleanField, StringField, IntegerField
 from wtforms import TextAreaField
 from wtforms.fields.html5 import EmailField, URLField
 from wtforms.validators import DataRequired, Email, Length, Regexp
@@ -99,7 +99,7 @@ class AppraiseForm(BaseForm):
 	)
 
 	""" 裸车价格"""
-	price = IntegerField(
+	price = StringField(
 		'price', validators=[],
 		description=_('')
 	)
@@ -192,13 +192,13 @@ class IndividualForm(BaseForm):
 	)
 
 	""" 里程 """
-	mileage = IntegerField(
+	mileage = FloatField(
 		'mileage', validators=[DataRequired()],
 		description=_('mileage required')
 	)
 
 	""" 裸车价格"""
-	price = IntegerField(
+	price = StringField(
 		'price', validators=[DataRequired()],
 		description=_('price required')
 	)
@@ -237,7 +237,7 @@ class ReplaceForm(BaseForm):
 	)
 
 	""" 里程 """
-	mileage = IntegerField(
+	mileage = FloatField(
 		'mileage', validators=[DataRequired()],
 		description=_('mileage required')
 	)

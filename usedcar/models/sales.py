@@ -37,7 +37,7 @@ class SalesVehicle(db.Model, SessionMixin):
 	licesing_year = db.Column(db.Integer, default=0)
 
 	"""里程"""
-	mileage =  db.Column(db.Integer, default=0)
+	mileage =  db.Column(db.Float, default=0.0)
 
 	"""裸车价格"""
 	price = db.Column(db.String(11), nullable=True)

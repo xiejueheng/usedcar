@@ -161,7 +161,7 @@ class VehicleInfo(db.Model, SessionMixin):
 	vehicle_style_id =  db.Column(db.Integer, default=0)
 
 	"""里程（公里）"""
-	mileage = db.Column(db.Integer, default=0)
+	mileage = db.Column(db.Float, default=0.0)
 
 	"""车龄"""
 	vehicle_age = db.Column(db.Integer, default=0)
