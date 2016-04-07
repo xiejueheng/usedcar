@@ -99,7 +99,7 @@ def agency():
 @bp.route('/query', methods=['GET','POST'])
 def query():
 	salesType = force_int(request.args.get('salesType'))
-	submitDate = force_int(request.args.get('submitDate'))
+	submitDate = request.args.get('submitDate')
 
 	if not salesType or not submitDate:
 		return abort(404)
