@@ -68,11 +68,13 @@ def register_hooks(app):
 '''
 
 def register_routes(app):
-    from .handlers import market,sales,region,transition
+    from .handlers import market,sales,region,transition,purchase
     app.register_blueprint(market.bp, url_prefix='/market')
     app.register_blueprint(sales.bp, url_prefix='/sales')
     app.register_blueprint(region.bp, url_prefix='/region')
     app.register_blueprint(transition.bp, url_prefix='/transitions')
+    app.register_blueprint(purchase.bp, url_prefix='/purchase')
+
     '''
     from .handlers import front, account, node, topic, user, admin
     app.register_blueprint(account.bp, url_prefix='/account')
