@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import time
 import os
 import os.path
 from flask import Blueprint
