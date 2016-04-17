@@ -3,6 +3,8 @@
 import hashlib
 from datetime import datetime
 from ._base import db, SessionMixin
+from brand import Brand
+from region import City,Country
 
 __all__ = ['SalesVehicle']
 
@@ -200,6 +202,27 @@ class SalesVehicle(db.Model, SessionMixin):
 		s_dict['agencyId']=self.agency_id
 		s_dict['salesType']=self.sales_type
 		s_dict['timestamp'] = self.timestamp
+
+		brand = Brand.query.filter_by(id=self.brand_id).first()
+		if brand:
+			s_dict['brandInfoName'] = brand.name
+
+		vehicleType = VehicleType.query.filter_by(id=self.type_id).first()
+		if vehicleType:
+			s_dict['styleName'] = vehicleType.name
+
+		vehicleStyle = VehicleStyle.query.filter_by(id=self.style_id).first()
+		if vehicleStyle:
+			s_dict['vehicleStyle'] = vehicleStyle.json()
+
+		city = City.query.filter_by(id=self.city).first()
+		if cityName:
+			s_dict['cityName'] = city.name
+
+		country = Country.query.filter_by(id=self.country).first()
+		if countryName:
+			s_dict['countryName'] = country.name
+
 		return s_dict
 
 	def save(self):
