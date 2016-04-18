@@ -210,7 +210,7 @@ class SalesVehicle(db.Model, SessionMixin):
 
 		vehicleType = VehicleType.query.filter_by(id=self.type_id).first()
 		if vehicleType:
-			s_dict['styleName'] = vehicleType.name
+			s_dict['typeName'] = vehicleType.name
 
 		vehicleStyle = VehicleStyle.query.filter_by(id=self.style_id).first()
 		if vehicleStyle:

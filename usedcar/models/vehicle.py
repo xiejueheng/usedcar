@@ -4,6 +4,7 @@ import hashlib
 from datetime import datetime
 from ._base import db, SessionMixin
 from brand import Brand
+from region import City,Country
 
 __all__ = ['VehicleType', 'VehicleStyle', 'VehicleInfo', 'VehiclePhoto', 'VehicleTransition', 'VehiclePurchase']
 
@@ -341,6 +342,9 @@ class VehiclePurchase(db.Model, SessionMixin):
 	"""车型id"""
 	type_id = db.Column(db.Integer, default=0)
 
+	""" 车款 """
+	style_id = db.Column(db.Integer, default=0)
+
 	"""车龄"""
 	car_age = db.Column(db.Integer, default=0)
 
@@ -376,6 +380,10 @@ class VehiclePurchase(db.Model, SessionMixin):
 			type_id = kwargs.pop('typeId')
 			self.type_id = type_id
 
+		if 'styleId' in kwargs:
+			styleId = kwargs.pop('styleId')
+			self.style_id = styleId
+
 		if 'carAge' in kwargs:
 			carAge = kwargs.pop('carAge')
 			self.car_age = carAge
@@ -403,6 +411,23 @@ class VehiclePurchase(db.Model, SessionMixin):
 		s_dict['common'] = self.common
 		s_dict['mobile'] = self.mobile
 		s_dict['timestamp'] = self.timestamp
+
+		brand = Brand.query.filter_by(id=self.brand_id).first()
+		if brand:
+			s_dict['brandInfoName'] = brand.name
+
+		vehicleType = VehicleType.query.filter_by(id=self.type_id).first()
+		if vehicleType:
+			s_dict['typeName'] = vehicleType.name
+
+		vehicleStyle = VehicleStyle.query.filter_by(id=self.style_id).first()
+		if vehicleStyle:
+			s_dict['vehicleStyle'] = vehicleStyle.json()
+
+		city = City.query.filter_by(id=self.city).first()
+		if city:
+			s_dict['cityName'] = city.name
+
 		return s_dict
 
 	def save(self):
