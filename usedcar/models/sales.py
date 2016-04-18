@@ -217,11 +217,11 @@ class SalesVehicle(db.Model, SessionMixin):
 			s_dict['vehicleStyle'] = vehicleStyle.json()
 
 		city = City.query.filter_by(id=self.city).first()
-		if cityName:
+		if city:
 			s_dict['cityName'] = city.name
 
 		country = Country.query.filter_by(id=self.country).first()
-		if countryName:
+		if country:
 			s_dict['countryName'] = country.name
 
 		return s_dict
