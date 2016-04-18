@@ -5,6 +5,7 @@ from datetime import datetime
 from ._base import db, SessionMixin
 from brand import Brand
 from region import City,Country
+from vehicle import VehicleType,VehicleStyle,VehicleInfo
 
 __all__ = ['SalesVehicle']
 
