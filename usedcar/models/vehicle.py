@@ -318,6 +318,11 @@ class VehicleTransition(db.Model, SessionMixin):
 		s_dict['name'] = self.name
 		s_dict['mobile'] = self.mobile
 		s_dict['timestamp'] = self.timestamp
+
+		city = City.query.filter_by(id=self.city).first()
+		if city:
+			s_dict['cityName'] = city.name
+		
 		return s_dict
 
 	def save(self):

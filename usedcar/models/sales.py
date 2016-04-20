@@ -224,6 +224,11 @@ class SalesVehicle(db.Model, SessionMixin):
 		if country:
 			s_dict['countryName'] = country.name
 
+		if self.licesingPlace is not None:
+			place = City.query.filter_by(id=self.licesingPlace).first()
+			if place:
+				s_dict['licesingPlaceName'] = place.name
+
 		return s_dict
 
 	def save(self):
