@@ -224,7 +224,7 @@ class SalesVehicle(db.Model, SessionMixin):
 		if country:
 			s_dict['countryName'] = country.name
 
-		if self.licesingPlace is not None:
+		if self.licesing_place is not None:
 			place = City.query.filter_by(id=self.licesing_place).first()
 			if place:
 				s_dict['licesingPlaceName'] = place.name
